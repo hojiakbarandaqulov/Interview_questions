@@ -27,3 +27,6 @@
 17 Oct 2024 - 08:07:40.019 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 1 migration (execution time 00:00.020s)
 17 Oct 2024 - 08:07:40.030 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
 17 Oct 2024 - 08:07:40.035 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+17 Oct 2024 - 08:17:03.881 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+17 Oct 2024 - 08:17:03.885 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+17 Oct 2024 - 08:17:03.889 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

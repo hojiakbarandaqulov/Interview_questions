@@ -23,6 +23,7 @@ import java.util.UUID;
 @Slf4j
 @Service
 public class AuthorizationService {
+
     private final SmsHistoryService smsHistoryService;
     private final SmsService smsService;
     private final ProfileRepository profileRepository;
@@ -44,7 +45,7 @@ public class AuthorizationService {
         profileEntity.setSurname(registrationDTO.getSurname());
         profileEntity.setPhone(registrationDTO.getPhone());
         profileEntity.setPassword(MD5Util.getMD5(registrationDTO.getPassword()));
-        profileEntity.setStatus(ProfileStatus.ACTIVE);
+        profileEntity.setStatus(ProfileStatus.REGISTRATION);
         profileEntity.setRole(ProfileRole.ROLE_USER);
         profileRepository.save(profileEntity);
 
