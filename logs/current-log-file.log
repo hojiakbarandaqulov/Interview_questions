@@ -30,3 +30,32 @@
 17 Oct 2024 - 08:17:03.881 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 17 Oct 2024 - 08:17:03.885 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 17 Oct 2024 - 08:17:03.889 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+17 Oct 2024 - 08:17:07.242 [main] INFO  c.e.InterviewQuestionsApplication - Starting InterviewQuestionsApplication using Java 17.0.12 with PID 1928 (D:\JavaProject\Interview_questions\target\classes started by Xojiakbar in D:\JavaProject\Interview_questions)
+17 Oct 2024 - 08:17:07.255 [main] INFO  c.e.InterviewQuestionsApplication - The following 1 profile is active: "dev"
+17 Oct 2024 - 08:17:08.245 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+17 Oct 2024 - 08:17:08.314 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 61 ms. Found 2 JPA repository interfaces.
+17 Oct 2024 - 08:17:08.917 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+17 Oct 2024 - 08:17:08.929 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+17 Oct 2024 - 08:17:08.930 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.26]
+17 Oct 2024 - 08:17:09.007 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+17 Oct 2024 - 08:17:09.008 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1711 ms
+17 Oct 2024 - 08:17:09.194 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+17 Oct 2024 - 08:17:09.251 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+17 Oct 2024 - 08:17:09.303 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+17 Oct 2024 - 08:17:09.688 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+17 Oct 2024 - 08:17:09.719 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+17 Oct 2024 - 08:17:09.905 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@30704f85
+17 Oct 2024 - 08:17:09.908 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+17 Oct 2024 - 08:17:09.960 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+17 Oct 2024 - 08:17:10.926 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+17 Oct 2024 - 08:17:11.014 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+17 Oct 2024 - 08:17:11.290 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+17 Oct 2024 - 08:17:12.001 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+17 Oct 2024 - 08:17:12.048 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+17 Oct 2024 - 08:17:12.050 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+17 Oct 2024 - 08:17:13.028 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+17 Oct 2024 - 08:17:13.042 [main] INFO  c.e.InterviewQuestionsApplication - Started InterviewQuestionsApplication in 6.226 seconds (process running for 6.954)
+17 Oct 2024 - 08:17:13.237 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/Interview_questions (PostgreSQL 14.13)
+17 Oct 2024 - 08:17:13.292 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 1 migration (execution time 00:00.031s)
+17 Oct 2024 - 08:17:13.308 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 1
+17 Oct 2024 - 08:17:13.311 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
