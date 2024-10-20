@@ -1,10 +1,8 @@
 package com.example.service.history;
 
-import com.example.utils.RandomUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -22,9 +20,10 @@ public class SmsService {
     @Value("${my.eskiz.uz.password}")
     private String myEskizUzPassword;
 
-    public void sendSms(String phone) {
+    public String sendSms(String phone) {
         String message = "Bu Eskiz dan test";
         send(phone, message);
+        return null;
     }
 
     private void send(String phone, String message) {
@@ -60,7 +59,6 @@ public class SmsService {
         }
     }
 
-
     private String getToken() {
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
@@ -69,7 +67,7 @@ public class SmsService {
                 .addFormDataPart("password", myEskizUzPassword)
                 .build();
         Request request = new Request.Builder()
-                .url(smsUrl + "api/auth/login")
+                .url(smsUrl + "api/v1/authorization/login")
                 .method("POST", body)
                 .build();
 
@@ -82,13 +80,16 @@ public class SmsService {
                 JSONObject object = new JSONObject(response.body().string());
                 JSONObject data = object.getJSONObject("data");
                 Object token = data.get("token");
+                System.out.println(token);
                 return token.toString();
             }
         } catch (IOException e) {
             e.printStackTrace();
             throw new RuntimeException();
         }
+
     }
+
 }
 
 

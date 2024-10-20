@@ -1,4 +1,4 @@
-###
+### Registration
 POST http://localhost:8080/api/v1/authorization/registration
 Content-Type: application/json
 
@@ -15,6 +15,33 @@ POST http://localhost:8080/api/v1/authorization/login
 Content-Type: application/json
 
 {
-  "phone": "+998995092376",
+  "phone": "+998992431068",
   "password": "1234"
+}
+
+### Verification
+GET http://localhost:8080/api/v1/authorization/verification/2f17bfe0-bf41-402d-8b93-9c8541403b93
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MjkxNzM3NjQsImlkIjoiZTU4ZWQ3NjMtOTI4Yy00MTU1LWJlZTktZmRiYWFhZGMxNWYzIiwicm9sZSI6IlJPTEVfQURNSU4iLCJ1c2VybmFtZSI6Iis5OTg5OTI0MzEwNjgiLCJleHAiOjE3Mjk1MTkzNjQsImlzcyI6IkludGVydmlld19xdWVzdGlvbnMifQ.aOZ6oWUgjEnSYL70pFChBE05OWTar0yrwp_GjXa933AYp_i-AFxS57YDdUF2raqL3hZP16hItvfjGhz5LIt8kg
+
+
+
+
+### Authorization
+POST https://notify.eskiz.uz/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "sarvargaybullayev3@gmail.com",
+  "password": "cvxFzYCPEhqI2glUXedHAHXa1pqRR8uhpolpHvHP"
+}
+
+### Send sms
+POST https://notify.eskiz.uz/api/message/sms/send
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MzE3MzE0NTQsImlhdCI6MTcyOTEzOTQ1NCwicm9sZSI6InRlc3QiLCJzaWduIjoiNWJkYzI3NjQ0YmUxYmFlMTFjYzE4NWMwNzU5MjIzNGUzNmMxMTZhMTU4ZWI2ZWMwZDJiZTgyN2ZjNGU4NDc4OSIsInN1YiI6Ijg1MjIifQ.UGIi9WF6R2WiUrH20ocdh9ru7K0x7QM-ozp0IH1Vo9E
+
+{
+  "mobile_phone": "+998995521968",
+  "message": "Bu Eskiz dan test",
+  "from": "4546"
 }
