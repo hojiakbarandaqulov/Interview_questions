@@ -1,5 +1,6 @@
 package com.example.entity;
 
+import com.example.enums.SmsStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -22,6 +23,10 @@ public class SmsHistoryEntity {
     @Column(name = "phone")
     @Size(min = 9,max = 13)
     private String phone;
+
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private SmsStatus status;
 
     @Column(name = "created_date")
     private LocalDateTime createdDate = LocalDateTime.now();

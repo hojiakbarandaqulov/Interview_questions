@@ -18,4 +18,6 @@ public interface ProfileRepository extends JpaRepository<ProfileEntity, String> 
     void updateStatus(String profileId, ProfileStatus status);
 
     Optional<ProfileEntity> findByPhoneAndPasswordAndVisibleIsTrue(String phone, String md5);
+
+    Optional<ProfileEntity> findByPhoneAndVisibleIsTrue(String phone);
 }

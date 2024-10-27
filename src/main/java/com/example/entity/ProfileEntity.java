@@ -15,7 +15,6 @@ import java.util.UUID;
 @Entity
 @Table(name = "profile")
 public class ProfileEntity {
-
     @Id
     @GeneratedValue(generator = "uuid-hibernate-generator")
     @GenericGenerator(name = "uuid-hibernate-generator", strategy = "org.hibernate.id.UUIDGenerator")
@@ -43,6 +42,9 @@ public class ProfileEntity {
 
     @Column(name = "created_date")
     private LocalDateTime createdDate=LocalDateTime.now();
+
+    @Column(name = "photo_id")
+    private String photoId;
 
     @Column(name = "visible")
     private Boolean visible=Boolean.TRUE;
