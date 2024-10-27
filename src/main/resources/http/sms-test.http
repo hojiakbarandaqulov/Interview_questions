@@ -1,0 +1,52 @@
+### Authorization
+POST https://notify.eskiz.uz/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "sarvargaybullayev3@gmail.com",
+  "password": "cvxFzYCPEhqI2glUXedHAHXa1pqRR8uhpolpHvHP"
+}
+
+### Send sms
+POST https://notify.eskiz.uz/api/message/sms/send
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MzI0NjQyMzUsImlhdCI6MTcyOTg3MjIzNSwicm9sZSI6InRlc3QiLCJzaWduIjoiNWJkYzI3NjQ0YmUxYmFlMTFjYzE4NWMwNzU5MjIzNGUzNmMxMTZhMTU4ZWI2ZWMwZDJiZTgyN2ZjNGU4NDc4OSIsInN1YiI6Ijg1MjIifQ.whMykb4RHHv79k6eoUgfIhq54sAQSWAuEhVCtoCCNn8
+
+{
+  "mobile_phone": "+998771300918",
+  "message": "Bu Eskiz dan test",
+  "from": "4546"
+}
+
+
+### Authorization
+POST https://notify.eskiz.uz/api/v1/authorization/login
+Content-Type: application/json
+
+{
+  "email": "19mrasul@gmail.com",
+  "password": "9"
+}
+
+### Send sms
+POST https://notify.eskiz.uz/api/message/sms/send
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTkwNzE0MzYsImlhdCI6MTcxNjQ3OTQzNiwicm9sZSI6InVzZXIiLCJzaWduIjoiYWQ3ZmZkZjg1NWE5NmJiYjkxYWNiNGM5Y2VjZDliMWYxMDlmOThkN2QxNDc5NGJhN2M0ZmIwODhmOTBiNTMyNiIsInN1YiI6IjEwMzMifQ.PP19N2-m9sV0IyMQJ8Pb4zEcxIdcYBNs5q9qJSp0jwE
+
+{
+  "mobile_phone": "+998771300918",
+  "message": "YouGo ilovasiga ro'yxatdan o'tishning tasdiqlash kodi: 12345",
+  "from": "4546"
+}
+
+
+
+###
+GET http://95.130.227.202:9091/api/v1/authorization/verification
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3Mjk5NjM4MTgsImlkIjoiZTU4ZWQ3NjMtOTI4Yy00MTU1LWJlZTktZmRiYWFhZGMxNWYzIiwicm9sZSI6IlJPTEVfQURNSU4iLCJ1c2VybmFtZSI6Ijk5ODk5MjQzMTA2OCIsImV4cCI6MTczMDMwOTQxOCwiaXNzIjoiSW50ZXJ2aWV3X3F1ZXN0aW9ucyJ9.dU30C89nwup4mEIvEgTxiSpbd1f9FfP8Lv8PS0VMJIQP2MfOVXMiTCIn84qCxYlcR41WuY4hfzIqOIavclP_Zg
+
+{
+  "phone": "998771300918",
+  "code": "53399"
+}

@@ -1,17 +1,19 @@
 package com.example.service.history;
 
+import com.example.utils.RandomUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
+@Slf4j
 @Service
 public class SmsService {
-
     @Value("${sms.url}")
     private String smsUrl;
     @Value("${my.eskiz.uz.email}")
@@ -21,75 +23,35 @@ public class SmsService {
     private String myEskizUzPassword;
 
     public String sendSms(String phone) {
-        String message = "Bu Eskiz dan test";
+//        String code = RandomUtil.getRandomSmsCode();
+        String message = "This is test from Eskiz";
         send(phone, message);
         return null;
     }
 
     private void send(String phone, String message) {
-        String token = "Bearer " + getToken();
-        String prPhone = phone;
-        if (prPhone.startsWith("+")) {
-            prPhone = prPhone.substring(1);
-        }
+        try {
         OkHttpClient client = new OkHttpClient();
 
-        RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
-                .addFormDataPart("mobile_phone", prPhone)
-                .addFormDataPart("message", message)
-                .addFormDataPart("from", "4546")
+        RequestBody body = new FormBody.Builder()
+                .add("mobile_phone", phone)
+                .add("message", message)
+                .add("from", "4546")
                 .build();
 
         Request request = new Request.Builder()
-                .url(smsUrl + "api/message/sms/send")
-                .method("POST", body)
-                .header("Authorization", token)
+                .url("https://notify.eskiz.uz/api/message/sms/send")
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MzI0NjQyMzUsImlhdCI6MTcyOTg3MjIzNSwicm9sZSI6InRlc3QiLCJzaWduIjoiNWJkYzI3NjQ0YmUxYmFlMTFjYzE4NWMwNzU5MjIzNGUzNmMxMTZhMTU4ZWI2ZWMwZDJiZTgyN2ZjNGU4NDc4OSIsInN1YiI6Ijg1MjIifQ.whMykb4RHHv79k6eoUgfIhq54sAQSWAuEhVCtoCCNn8")
+                .post(body)
                 .build();
-
-        try {
-            Response response = client.newCall(request).execute();
-            if (response.isSuccessful()) {
-                System.out.println(response);
-            } else {
-                throw new IOException();
-            }
+        Call call = client.newCall(request);
+            Response response=call.execute();
+            System.out.println(response.body().string());
         } catch (IOException e) {
-            e.printStackTrace();
-            throw new RuntimeException();
+            throw new RuntimeException(e);
         }
     }
-
-    private String getToken() {
-        OkHttpClient client = new OkHttpClient().newBuilder()
-                .build();
-        RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
-                .addFormDataPart("email", myEskizUzEmail)
-                .addFormDataPart("password", myEskizUzPassword)
-                .build();
-        Request request = new Request.Builder()
-                .url(smsUrl + "api/v1/authorization/login")
-                .method("POST", body)
-                .build();
-
-        Response response;
-        try {
-            response = client.newCall(request).execute();
-            if (!response.isSuccessful()) {
-                throw new IOException();
-            } else {
-                JSONObject object = new JSONObject(response.body().string());
-                JSONObject data = object.getJSONObject("data");
-                Object token = data.get("token");
-                System.out.println(token);
-                return token.toString();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new RuntimeException();
-        }
-
-    }
-
 }
 
 

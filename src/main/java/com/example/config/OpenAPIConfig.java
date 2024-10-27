@@ -1,5 +1,10 @@
 package com.example.config;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.info.License;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
@@ -11,18 +16,17 @@ import java.util.List;
 //@OpenAPIDefinition(
 //        info = @io.swagger.v3.oas.annotations.info.Info(
 //                contact = @io.swagger.v3.oas.annotations.info.Contact(
-//                        name = "Youtube ",
+//                        name = "Interview",
 //                        email = "something@gmal.com",
-//                        url = "https://kitabu.uz/"
+//                        url = "https://interview.uz/"
 //                ),
 //                description = "This API exposes endpoints to manage tutorials.",
-//                title = "FaysMarket Management API",
+//                title = "Interview_questions Management API",
 //                version = "1.0",
 //                license = @License(
-//                        name = "Videohub",
-//                        url = "https://kitabu.uz/"
-//                ),
-//                termsOfService = "Savol javob guruhi: https://t.me/code_uz_group"
+//                        name = "Interview",
+//                        url = "https://interview.uz/"
+//                )
 //        ),
 //        servers = {
 //                @io.swagger.v3.oas.annotations.servers.Server (
@@ -31,7 +35,7 @@ import java.util.List;
 //                ),
 //                @io.swagger.v3.oas.annotations.servers.Server(
 //                        description = "PROD ENV",
-//                        url = "https://api.kitabu.uz/"
+//                        url = "https://api.interview.uz/"
 //                )
 //        }
 //)
@@ -56,7 +60,7 @@ public class OpenAPIConfig {
         devServer.setDescription("Youtube test project");
 
         Contact contact = new Contact();
-        contact.setEmail("FaysMarket");
+        contact.setEmail("Interview");
         contact.setName("BezKoder");
         contact.setUrl("https://www.bezkoder.com");
 

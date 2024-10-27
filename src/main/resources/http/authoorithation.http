@@ -5,7 +5,7 @@ Content-Type: application/json
 {
   "name": "Vali",
   "surname": "Valiyev",
-  "phone": "+998995521968",
+  "phone": "998771300919",
   "password": "1234"
 }
 
@@ -15,33 +15,39 @@ POST http://localhost:8080/api/v1/authorization/login
 Content-Type: application/json
 
 {
-  "phone": "+998992431068",
+  "phone": "998992431068",
   "password": "1234"
 }
 
-### Verification
-GET http://localhost:8080/api/v1/authorization/verification/2f17bfe0-bf41-402d-8b93-9c8541403b93
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MjkxNzM3NjQsImlkIjoiZTU4ZWQ3NjMtOTI4Yy00MTU1LWJlZTktZmRiYWFhZGMxNWYzIiwicm9sZSI6IlJPTEVfQURNSU4iLCJ1c2VybmFtZSI6Iis5OTg5OTI0MzEwNjgiLCJleHAiOjE3Mjk1MTkzNjQsImlzcyI6IkludGVydmlld19xdWVzdGlvbnMifQ.aOZ6oWUgjEnSYL70pFChBE05OWTar0yrwp_GjXa933AYp_i-AFxS57YDdUF2raqL3hZP16hItvfjGhz5LIt8kg
+### verification
+GET http://localhost:8080/api/v1/authorization/verification
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3Mjk5NTA3NDgsImlkIjoiZTU4ZWQ3NjMtOTI4Yy00MTU1LWJlZTktZmRiYWFhZGMxNWYzIiwicm9sZSI6IlJPTEVfQURNSU4iLCJ1c2VybmFtZSI6Ijk5ODk5MjQzMTA2OCIsImV4cCI6MTczMDI5NjM0OCwiaXNzIjoiSW50ZXJ2aWV3X3F1ZXN0aW9ucyJ9.dU6-Sh_pdlVnilWescble2vZKhCCT2wK6haSOFBH44Rw1gGhmk4A8-Qnys0EpIDanSMrwhUm2ZedzYwCo6H8RQ
+
+{
+  "phone": "998771300918",
+  "code": "78041"
+}
+### resend
+GET http://localhost:8080/api/v1/authorization/registration/resend/998771300919
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3Mjk5NTA3NDgsImlkIjoiZTU4ZWQ3NjMtOTI4Yy00MTU1LWJlZTktZmRiYWFhZGMxNWYzIiwicm9sZSI6IlJPTEVfQURNSU4iLCJ1c2VybmFtZSI6Ijk5ODk5MjQzMTA2OCIsImV4cCI6MTczMDI5NjM0OCwiaXNzIjoiSW50ZXJ2aWV3X3F1ZXN0aW9ucyJ9.dU6-Sh_pdlVnilWescble2vZKhCCT2wK6haSOFBH44Rw1gGhmk4A8-Qnys0EpIDanSMrwhUm2ZedzYwCo6H8RQ
 
 
-
-
-### Authorization
-POST https://notify.eskiz.uz/api/auth/login
+### Login
+POST http://95.130.227.202:9091/api/v1/authorization/login
 Content-Type: application/json
 
 {
-  "email": "sarvargaybullayev3@gmail.com",
-  "password": "cvxFzYCPEhqI2glUXedHAHXa1pqRR8uhpolpHvHP"
+  "phone": "998992431068",
+  "password": "1234"
 }
 
-### Send sms
-POST https://notify.eskiz.uz/api/message/sms/send
+### verification
+GET http://95.130.227.202:9091/api/v1/authorization/verification
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MzE3MzE0NTQsImlhdCI6MTcyOTEzOTQ1NCwicm9sZSI6InRlc3QiLCJzaWduIjoiNWJkYzI3NjQ0YmUxYmFlMTFjYzE4NWMwNzU5MjIzNGUzNmMxMTZhMTU4ZWI2ZWMwZDJiZTgyN2ZjNGU4NDc4OSIsInN1YiI6Ijg1MjIifQ.UGIi9WF6R2WiUrH20ocdh9ru7K0x7QM-ozp0IH1Vo9E
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3Mjk5NTA3NDgsImlkIjoiZTU4ZWQ3NjMtOTI4Yy00MTU1LWJlZTktZmRiYWFhZGMxNWYzIiwicm9sZSI6IlJPTEVfQURNSU4iLCJ1c2VybmFtZSI6Ijk5ODk5MjQzMTA2OCIsImV4cCI6MTczMDI5NjM0OCwiaXNzIjoiSW50ZXJ2aWV3X3F1ZXN0aW9ucyJ9.dU6-Sh_pdlVnilWescble2vZKhCCT2wK6haSOFBH44Rw1gGhmk4A8-Qnys0EpIDanSMrwhUm2ZedzYwCo6H8RQ
 
 {
-  "mobile_phone": "+998995521968",
-  "message": "Bu Eskiz dan test",
-  "from": "4546"
+  "phone": "998771300919",
+  "code": "53304"
 }
