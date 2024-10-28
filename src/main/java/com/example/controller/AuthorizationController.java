@@ -32,15 +32,15 @@ public class AuthorizationController {
     @PostMapping("/registration")
     @Operation(summary = "Registration", description = "Api for profile registration")
     public ResponseEntity<ApiResponse<?>> registration(@Valid @RequestBody RegistrationDTO registrationDTO,
-                                                       @RequestHeader(value = "Accept-Language", defaultValue = "uz")AppLanguage language) {
-        ApiResponse<?> response = authorizationService.registration(registrationDTO,language);
+                                                       @RequestParam(defaultValue = "uz") AppLanguage language) {
+        ApiResponse<?> response = authorizationService.registration(registrationDTO, language);
         return ResponseEntity.ok().body(response);
     }
 
     @PostMapping("/login")
     public ResponseEntity<ApiResponse<?>> login(@Valid @RequestBody LoginDTO loginDTO,
-                                                @RequestHeader(value = "Accept-Language", defaultValue = "uz")AppLanguage language) {
-        ApiResponse<?> response = authorizationService.login(loginDTO,language);
+                                                @RequestHeader(value = "Accept-Language", defaultValue = "uz") AppLanguage language) {
+        ApiResponse<?> response = authorizationService.login(loginDTO, language);
         return ResponseEntity.ok().body(response);
     }
 
@@ -51,17 +51,17 @@ public class AuthorizationController {
         return ResponseEntity.ok().body(response);
     }*/
 
-   @GetMapping("/verification/{userId)")
-   public ResponseEntity<ApiResponse<?>> verification(@PathVariable String id,
-                                                      @RequestHeader(value = "Accept-Language", defaultValue = "uz")AppLanguage language) {
-       ApiResponse<?> response = authorizationService.authorizationVerification(id,language);
-       return ResponseEntity.ok().body(response);
-   }
+    @GetMapping("/verification/{userId}")
+    public ResponseEntity<ApiResponse<String>> verification(@PathVariable String userId,
+                                                            @RequestParam(defaultValue = "uz") AppLanguage language) {
+        ApiResponse<String> response = authorizationService.authorizationVerification(userId, language);
+        return ResponseEntity.ok().body(response);
+    }
 
     @GetMapping("/registration/resend/{phone}")
     public ResponseEntity<ApiResponse<?>> registrationResend(@PathVariable("phone") String phone,
-                                                             @RequestHeader(value = "Accept-Language", defaultValue = "uz")AppLanguage language) {
-        ApiResponse<?> response = authorizationService.registrationResendPhone(phone,language);
+                                                             @RequestHeader(value = "Accept-Language", defaultValue = "uz") AppLanguage language) {
+        ApiResponse<?> response = authorizationService.registrationResendPhone(phone, language);
         return ResponseEntity.ok().body(response);
     }
 }

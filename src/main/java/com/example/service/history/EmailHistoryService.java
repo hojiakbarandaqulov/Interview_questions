@@ -23,7 +23,7 @@ public class EmailHistoryService {
         this.resourceBundleMessageSource = resourceBundleMessageSource;
     }
 
-    public void crete(String toEmail, String text) {
+    public void create(String toEmail, String text) {
         EmailHistoryEntity entity = new EmailHistoryEntity();
         if (toEmail.equals(entity.getEmail())) {
             throw new AppBadException("EmailHistory already exists");

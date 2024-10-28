@@ -19,6 +19,7 @@ import com.example.utils.MD5Util;
 import com.example.utils.RandomUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.tomcat.util.http.parser.Authorization;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +39,7 @@ public class AuthorizationService {
     private final EmailHistoryService emailHistoryService;
     private final ResourceBundleMessageSource resourceBundleMessageSource;
 
-    public ApiResponse registration(RegistrationDTO registrationDTO, AppLanguage language) {
+    public ApiResponse<String> registration(RegistrationDTO registrationDTO, AppLanguage language) {
 //        Optional<ProfileEntity> optional = profileRepository.findByPhoneAndVisibleTrue(registrationDTO.getEmail());
         Optional<ProfileEntity> optional = profileRepository.findByEmailAndVisibleTrue(registrationDTO.getEmail());
         if (optional.isPresent()) {
@@ -58,7 +59,7 @@ public class AuthorizationService {
         sendRegistrationEmail(profileEntity.getId(), profileEntity.getEmail());
        /* smsService.sendSms(registrationDTO.getEmail());
         sendRegistrationPhone(profileEntity.getId(), registrationDTO.getEmail());*/
-        return ApiResponse.ok(List.of("Successfully registered"));
+        return ApiResponse.ok(List.of("Successfully registered"),1);
     }
 
     public void sendRegistrationPhone(String profileId, String phone) {
@@ -104,18 +105,15 @@ public class AuthorizationService {
             String message = resourceBundleMessageSource.getMessage("user.not.found", null, new Locale(language.name()));
             throw new AppBadException(message);
         }
-
         ProfileEntity entity = optional.get();
         if (!entity.getVisible() || !entity.getStatus().equals(ProfileStatus.REGISTRATION)) {
             String message = resourceBundleMessageSource.getMessage("registration.not.completed", null, new Locale(language.name()));
             throw new AppBadException(message);
         }
-
         profileRepository.updateStatus(userId, ProfileStatus.ACTIVE);
-        String message=resourceBundleMessageSource.getMessage("Success", null, new Locale(language.name()));
-        return ApiResponse.ok(List.of(message));
+        String message = resourceBundleMessageSource.getMessage("success", null, new Locale(language.name()));
+        return ApiResponse.ok(List.of(message),1);
     }
-
     public ApiResponse<AuthorizationResponseDTO> login(LoginDTO dto, AppLanguage language) {
         /*Optional<ProfileEntity> optional = profileRepository.findByPhoneAndPasswordAndVisibleIsTrue(
                 dto.getPhone(),
@@ -139,7 +137,7 @@ public class AuthorizationService {
         responseDTO.setId(entity.getId());
         responseDTO.setRole(entity.getRole());
         responseDTO.setJwt(JwtUtil.encode(responseDTO.getId(), entity.getPhone(), responseDTO.getRole()));
-        return ApiResponse.ok(List.of(responseDTO));
+        return ApiResponse.ok(List.of(responseDTO),1);
     }
 
     public ApiResponse<?> registrationResendPhone(String email, AppLanguage language) {
@@ -163,12 +161,12 @@ public class AuthorizationService {
 //        sendRegistrationPhone(entity.getId(), email);
         emailHistoryService.checkEmailLimit(email);
         sendRegistrationRandomCodeEmail(entity.getId(), email);
-        return ApiResponse.ok(List.of("To complete your registration please verify your phone."));
+        return ApiResponse.ok(List.of("To complete your registration please verify your phone."),1);
     }
 
     public void sendRegistrationEmail(String profileId, String email) {
         // send email
-        String url = "http://localhost:8080/api/v1/authorization/verification/" + profileId;
+        String url = String.format("http://localhost:8080/api/v1/authorization/verification/"+profileId);
         String formatText = "<style>\n" +
                 "    a:link, a:visited {\n" +
                 "        background-color: #f44336;\n" +
@@ -191,8 +189,8 @@ public class AuthorizationService {
                 "        <a href=\"%s\" target=\"_blank\">This is a link</a>\n" +
                 "    </div>";
         String text = String.format(formatText, url);
-        mailSenderService.send(email, "Complete registration", text);
-        emailHistoryService.crete(email, text); // create history
+        mailSenderService.send(email, "Registration completed", text);
+        emailHistoryService.create(email, text); // create history
     }
 
     public void sendRegistrationRandomCodeEmail(String profileId, String email) {
@@ -200,6 +198,6 @@ public class AuthorizationService {
         String url = "http://localhost:8080/api/v1/authorization/verification/" + profileId;
         String text = String.format(RandomUtil.getRandomSmsCode(), url);
         mailSenderService.send(email, "Complete registration", text);
-        emailHistoryService.crete(email, text); // create history
+        emailHistoryService.create(email, text); // create history
     }
 }
