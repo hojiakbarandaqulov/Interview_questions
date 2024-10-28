@@ -3,14 +3,14 @@ POST https://notify.eskiz.uz/api/auth/login
 Content-Type: application/json
 
 {
-  "email": "sarvargaybullayev3@gmail.com",
-  "password": "cvxFzYCPEhqI2glUXedHAHXa1pqRR8uhpolpHvHP"
+  "email": "handaqulov51@gmail.com",
+  "password": "TBpAnEfk8CuMPnOZlqxzfXrxJRugKwb9m7vXmfyZ"
 }
 
 ### Send sms
 POST https://notify.eskiz.uz/api/message/sms/send
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MzI0NjQyMzUsImlhdCI6MTcyOTg3MjIzNSwicm9sZSI6InRlc3QiLCJzaWduIjoiNWJkYzI3NjQ0YmUxYmFlMTFjYzE4NWMwNzU5MjIzNGUzNmMxMTZhMTU4ZWI2ZWMwZDJiZTgyN2ZjNGU4NDc4OSIsInN1YiI6Ijg1MjIifQ.whMykb4RHHv79k6eoUgfIhq54sAQSWAuEhVCtoCCNn8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MzI3MDkyMjIsImlhdCI6MTczMDExNzIyMiwicm9sZSI6InRlc3QiLCJzaWduIjoiY2M3MzMwOWJiMzcyMTE5MWY3ZDdhNjA1NWQyNjhjNjFlYTUzYjVmNzZlMGMxN2IzMjM2ZjQyM2JkNmQ2NDY5YyIsInN1YiI6Ijc0MDcifQ.yugABt55o8XcANA-GVyiIi01Uce2DFBa93-co5O8nko
 
 {
   "mobile_phone": "+998771300918",

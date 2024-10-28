@@ -1,7 +1,7 @@
 package com.example.service.history;
 
 import com.example.dto.ApiResponse;
-import com.example.entity.SmsHistoryEntity;
+import com.example.entity.history.SmsHistoryEntity;
 import com.example.enums.AppLanguage;
 import com.example.enums.SmsStatus;
 import com.example.exp.AppBadException;

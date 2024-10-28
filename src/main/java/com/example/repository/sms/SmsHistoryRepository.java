@@ -1,11 +1,10 @@
 package com.example.repository.sms;
 
-import com.example.entity.SmsHistoryEntity;
+import com.example.entity.history.SmsHistoryEntity;
 import com.example.enums.SmsStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;

@@ -44,12 +44,19 @@ public class AuthorizationController {
         return ResponseEntity.ok().body(response);
     }
 
-    @PostMapping("/verification")
+   /* @PostMapping("/verification")
     public ResponseEntity<ApiResponse<?>> verification(@Valid @RequestBody SmsDTO smsDTO,
                                                        @RequestHeader(value = "Accept-Language", defaultValue = "uz")AppLanguage language) {
         ApiResponse<?> response = authorizationService.authorizationVerification(smsDTO,language);
         return ResponseEntity.ok().body(response);
-    }
+    }*/
+
+   @GetMapping("/verification/{userId)")
+   public ResponseEntity<ApiResponse<?>> verification(@PathVariable String id,
+                                                      @RequestHeader(value = "Accept-Language", defaultValue = "uz")AppLanguage language) {
+       ApiResponse<?> response = authorizationService.authorizationVerification(id,language);
+       return ResponseEntity.ok().body(response);
+   }
 
     @GetMapping("/registration/resend/{phone}")
     public ResponseEntity<ApiResponse<?>> registrationResend(@PathVariable("phone") String phone,

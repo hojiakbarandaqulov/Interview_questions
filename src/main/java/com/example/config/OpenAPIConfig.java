@@ -13,41 +13,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 
 import java.util.List;
-//@OpenAPIDefinition(
-//        info = @io.swagger.v3.oas.annotations.info.Info(
-//                contact = @io.swagger.v3.oas.annotations.info.Contact(
-//                        name = "Interview",
-//                        email = "something@gmal.com",
-//                        url = "https://interview.uz/"
-//                ),
-//                description = "This API exposes endpoints to manage tutorials.",
-//                title = "Interview_questions Management API",
-//                version = "1.0",
-//                license = @License(
-//                        name = "Interview",
-//                        url = "https://interview.uz/"
-//                )
-//        ),
-//        servers = {
-//                @io.swagger.v3.oas.annotations.servers.Server (
-//                        description = "Local ENV",
-//                        url = "http://localhost:8080"
-//                ),
-//                @io.swagger.v3.oas.annotations.servers.Server(
-//                        description = "PROD ENV",
-//                        url = "https://api.interview.uz/"
-//                )
-//        }
-//)
-//@SecurityScheme(
-//        name = "bearerAuth",
-//        description = "JWT auth description",
-//        scheme = "bearer",
-//        type = SecuritySchemeType.HTTP,
-//        bearerFormat = "JWT",
-//        in = SecuritySchemeIn.HEADER
-//
-//)
 
 public class OpenAPIConfig {
     @Value("${server.url}")
@@ -57,7 +22,7 @@ public class OpenAPIConfig {
     public OpenAPI myOpenAPI() {
         Server devServer = new Server();
         devServer.setUrl(url);
-        devServer.setDescription("Youtube test project");
+        devServer.setDescription("Interview test project");
 
         Contact contact = new Contact();
         contact.setEmail("Interview");
@@ -66,7 +31,7 @@ public class OpenAPIConfig {
 
 
         Info info = new Info()
-                .title("Youtube Management API")
+                .title("Interview_questions Management API")
                 .version("1.0")
                 .contact(contact)
                 .description("This API exposes endpoints to manage tutorials.")
