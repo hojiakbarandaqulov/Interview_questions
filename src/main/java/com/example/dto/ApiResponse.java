@@ -3,6 +3,8 @@ package com.example.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 public class ApiResponse<T> {
@@ -12,7 +14,9 @@ public class ApiResponse<T> {
 
         private Boolean isError;
 
-        private T data;
+        private List<T> data;
+
+        private Integer total;
 
         public ApiResponse() {
 
@@ -22,6 +26,7 @@ public class ApiResponse<T> {
             this.code = code;
             this.isError = isError;
             this.data = null;
+            this.total = 0;
         }
 
         public ApiResponse(String message, Integer code, Boolean isError) {
@@ -29,32 +34,36 @@ public class ApiResponse<T> {
             this.code = code;
             this.isError = isError;
             this.data = null;
+            this.total = 0;
         }
 
         public ApiResponse(String message, Integer code) {
             this.message = message;
             this.code = code;
             this.data = null;
+            this.total = (data != null) ? data.size() : 0;
         }
 
-        public ApiResponse(Integer code, Boolean isError, T data) {
+        public ApiResponse(Integer code, Boolean isError, List<T> data) {
             this.code = code;
             this.isError = isError;
             this.data = data;
+            this.total=(data != null) ? data.size() : 0;
         }
 
-        public ApiResponse(String message, Integer code, Boolean isError, T data) {
+        public ApiResponse(String message, Integer code, Boolean isError, List<T> data, Integer total) {
             this.message = message;
             this.code = code;
             this.isError = isError;
             this.data = data;
+            this.total = total;
         }
 
-        public static <T> ApiResponse<T> ok(T data) {
+        public static <T> ApiResponse<T> ok(List<T> data) {
             return new ApiResponse<T>(200, false, data);
         }
 
-        public static <T> ApiResponse<T> ok(Boolean isError, T data) {
+        public static <T> ApiResponse<T> ok(Boolean isError, List<T> data) {
             return new ApiResponse<T>(200, false, data);
         }
 
@@ -73,4 +82,6 @@ public class ApiResponse<T> {
         public static <T> ApiResponse<T> unAuthorized(String message) {
             return new ApiResponse<T>(message, 401, true);
         }
+
+
     }

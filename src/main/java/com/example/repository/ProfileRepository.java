@@ -20,4 +20,8 @@ public interface ProfileRepository extends JpaRepository<ProfileEntity, String> 
     Optional<ProfileEntity> findByPhoneAndPasswordAndVisibleIsTrue(String phone, String md5);
 
     Optional<ProfileEntity> findByPhoneAndVisibleIsTrue(String phone);
+
+    Optional<ProfileEntity> findByEmailAndVisibleTrue(String email);
+
+    Optional<ProfileEntity> findByEmailAndPasswordAndVisibleIsTrue(String email, String md5);
 }

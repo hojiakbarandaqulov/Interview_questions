@@ -1,4 +1,4 @@
-package com.example.entity;
+package com.example.entity.history;
 
 import com.example.enums.SmsStatus;
 import jakarta.persistence.*;

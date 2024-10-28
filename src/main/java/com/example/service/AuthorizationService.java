@@ -4,28 +4,27 @@ import com.example.dto.ApiResponse;
 import com.example.dto.AuthorizationResponseDTO;
 import com.example.dto.LoginDTO;
 import com.example.dto.RegistrationDTO;
-import com.example.dto.auth.SmsDTO;
 import com.example.entity.ProfileEntity;
 import com.example.enums.AppLanguage;
 import com.example.enums.ProfileRole;
 import com.example.enums.ProfileStatus;
 import com.example.exp.AppBadException;
 import com.example.repository.ProfileRepository;
+import com.example.service.history.EmailHistoryService;
+import com.example.service.history.MailSenderService;
 import com.example.service.history.SmsHistoryService;
 import com.example.service.history.SmsService;
 import com.example.utils.JwtUtil;
 import com.example.utils.MD5Util;
-import com.example.utils.PhoneUtil;
 import com.example.utils.RandomUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.ResourceBanner;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
-import java.util.UUID;
 
 @Slf4j
 @AllArgsConstructor
@@ -34,28 +33,32 @@ public class AuthorizationService {
 
     private final SmsHistoryService smsHistoryService;
     private final SmsService smsService;
+    private final MailSenderService mailSenderService;
     private final ProfileRepository profileRepository;
+    private final EmailHistoryService emailHistoryService;
     private final ResourceBundleMessageSource resourceBundleMessageSource;
 
-    public ApiResponse<?> registration(RegistrationDTO registrationDTO, AppLanguage language) {
-        Optional<ProfileEntity> optional = profileRepository.findByPhoneAndVisibleTrue(registrationDTO.getPhone());
+    public ApiResponse registration(RegistrationDTO registrationDTO, AppLanguage language) {
+//        Optional<ProfileEntity> optional = profileRepository.findByPhoneAndVisibleTrue(registrationDTO.getEmail());
+        Optional<ProfileEntity> optional = profileRepository.findByEmailAndVisibleTrue(registrationDTO.getEmail());
         if (optional.isPresent()) {
-            log.info("Phone already exists = {}", registrationDTO.getPhone());
-            String message = resourceBundleMessageSource.getMessage("phone.already.exists", null, new Locale(language.name()));
+            log.info("Email already exists = {}", registrationDTO.getEmail());
+            String message = resourceBundleMessageSource.getMessage("email.already.exists", null, new Locale(language.name()));
             throw new AppBadException(message);
         }
         ProfileEntity profileEntity = new ProfileEntity();
         profileEntity.setName(registrationDTO.getName());
         profileEntity.setSurname(registrationDTO.getSurname());
-        profileEntity.setPhone(registrationDTO.getPhone());
+        profileEntity.setEmail(registrationDTO.getEmail());
         profileEntity.setPassword(MD5Util.getMD5(registrationDTO.getPassword()));
         profileEntity.setStatus(ProfileStatus.REGISTRATION);
         profileEntity.setRole(ProfileRole.ROLE_USER);
         profileRepository.save(profileEntity);
 
-        smsService.sendSms(registrationDTO.getPhone());
-        sendRegistrationPhone(profileEntity.getId(), registrationDTO.getPhone());
-        return ApiResponse.ok("Successfully registered");
+        sendRegistrationEmail(profileEntity.getId(), profileEntity.getEmail());
+       /* smsService.sendSms(registrationDTO.getEmail());
+        sendRegistrationPhone(profileEntity.getId(), registrationDTO.getEmail());*/
+        return ApiResponse.ok(List.of("Successfully registered"));
     }
 
     public void sendRegistrationPhone(String profileId, String phone) {
@@ -64,40 +67,61 @@ public class AuthorizationService {
         smsHistoryService.crete(phone, text);
     }
 
-    public ApiResponse<?> authorizationVerification(SmsDTO dto, AppLanguage language) {
-        boolean validate = PhoneUtil.validatePhone(dto.getPhone());
-        if (!validate) {
-            log.info("Phone not Valid! phone = {}", dto.getPhone());
-            String message = resourceBundleMessageSource.getMessage("phone.validation.not-valid", null, new Locale(language.name()));
+    //    public ApiResponse<?> authorizationVerification(SmsDTO dto, AppLanguage language) {
+//        boolean validate = PhoneUtil.validatePhone(dto.getPhone());
+//        if (!validate) {
+//            log.info("Phone not Valid! phone = {}", dto.getPhone());
+//            String message = resourceBundleMessageSource.getMessage("phone.validation.not-valid", null, new Locale(language.name()));
+//            throw new AppBadException(message);
+//        }
+//
+//        Optional<ProfileEntity> userOptional = profileRepository.findByPhoneAndVisibleIsTrue(dto.getPhone());
+//        if (userOptional.isEmpty()) {
+//            log.warn("Client not found! phone = {}", dto.getPhone());
+//            String message = resourceBundleMessageSource.getMessage("client.not.found", null, new Locale(language.name()));
+//            throw new AppBadException(message);
+//        }
+//        ProfileEntity profile = userOptional.get();
+//        if (!profile.getStatus().equals(ProfileStatus.REGISTRATION)) {
+//            log.warn("Profile Status Blocked! Phone = {}", dto.getPhone());
+//            String message = resourceBundleMessageSource.getMessage("wrong.client.status", null, new Locale(language.name()));
+//            throw new AppBadException(message);
+//        }
+//
+//        ApiResponse<String> smsResponse = smsHistoryService.checkSmsCode(dto.getPhone(), dto.getCode(),language);
+//        if (smsResponse.getIsError()) {
+//            String message = resourceBundleMessageSource.getMessage("sms.code.incorrect", null, new Locale(language.name()));
+//            throw new AppBadException(message);
+//        }
+//        // change client status
+//        profileRepository.updateStatus(profile.getId(), ProfileStatus.ACTIVE);
+//        return new ApiResponse<>(200, false, "Successful");
+//    }
+    public ApiResponse<String> authorizationVerification(String userId, AppLanguage language) {
+        Optional<ProfileEntity> optional = profileRepository.findById(userId);
+        if (optional.isEmpty()) {
+            log.warn("User not found => {}", userId);
+            String message = resourceBundleMessageSource.getMessage("user.not.found", null, new Locale(language.name()));
             throw new AppBadException(message);
         }
 
-        Optional<ProfileEntity> userOptional = profileRepository.findByPhoneAndVisibleIsTrue(dto.getPhone());
-        if (userOptional.isEmpty()) {
-            log.warn("Client not found! phone = {}", dto.getPhone());
-            String message = resourceBundleMessageSource.getMessage("client.not.found", null, new Locale(language.name()));
-            throw new AppBadException(message);
-        }
-        ProfileEntity profile = userOptional.get();
-        if (!profile.getStatus().equals(ProfileStatus.REGISTRATION)) {
-            log.warn("Profile Status Blocked! Phone = {}", dto.getPhone());
-            String message = resourceBundleMessageSource.getMessage("wrong.client.status", null, new Locale(language.name()));
+        ProfileEntity entity = optional.get();
+        if (!entity.getVisible() || !entity.getStatus().equals(ProfileStatus.REGISTRATION)) {
+            String message = resourceBundleMessageSource.getMessage("registration.not.completed", null, new Locale(language.name()));
             throw new AppBadException(message);
         }
 
-        ApiResponse<String> smsResponse = smsHistoryService.checkSmsCode(dto.getPhone(), dto.getCode(),language);
-        if (smsResponse.getIsError()) {
-            String message = resourceBundleMessageSource.getMessage("sms.code.incorrect", null, new Locale(language.name()));
-            throw new AppBadException(message);
-        }
-        // change client status
-        profileRepository.updateStatus(profile.getId(), ProfileStatus.ACTIVE);
-        return new ApiResponse<>(200, false, "Successful");
+        profileRepository.updateStatus(userId, ProfileStatus.ACTIVE);
+        String message=resourceBundleMessageSource.getMessage("Success", null, new Locale(language.name()));
+        return ApiResponse.ok(List.of(message));
     }
 
     public ApiResponse<AuthorizationResponseDTO> login(LoginDTO dto, AppLanguage language) {
-        Optional<ProfileEntity> optional = profileRepository.findByPhoneAndPasswordAndVisibleIsTrue(
+        /*Optional<ProfileEntity> optional = profileRepository.findByPhoneAndPasswordAndVisibleIsTrue(
                 dto.getPhone(),
+                MD5Util.getMD5(dto.getPassword()));*/
+        Optional<ProfileEntity> optional = profileRepository.findByEmailAndPasswordAndVisibleIsTrue(
+                dto.getEmail(),
                 MD5Util.getMD5(dto.getPassword()));
         if (optional.isEmpty()) {
             log.error("user not found");
@@ -115,25 +139,67 @@ public class AuthorizationService {
         responseDTO.setId(entity.getId());
         responseDTO.setRole(entity.getRole());
         responseDTO.setJwt(JwtUtil.encode(responseDTO.getId(), entity.getPhone(), responseDTO.getRole()));
-        return ApiResponse.ok(responseDTO);
+        return ApiResponse.ok(List.of(responseDTO));
     }
 
-    public ApiResponse<?> registrationResendPhone(String phone, AppLanguage language) {
-        Optional<ProfileEntity> optional = profileRepository.findByPhoneAndVisibleTrue(phone);
+    public ApiResponse<?> registrationResendPhone(String email, AppLanguage language) {
+        /*Optional<ProfileEntity> optional = profileRepository.findByPhoneAndVisibleTrue(phone);*/
+        Optional<ProfileEntity> optional = profileRepository.findByEmailAndVisibleTrue(email);
         if (optional.isEmpty()) {
-            log.error("phone not found");
-            throw new AppBadException("Phone not exists");
+            log.error("email not found");
+            String message = resourceBundleMessageSource.getMessage("email.not.found", null, new Locale(language.name()));
+            throw new AppBadException(message);
         }
         ProfileEntity entity = optional.get();
-        smsHistoryService.isNotExpiredPhone(entity.getPhone());
+//        smsHistoryService.isNotExpiredPhone(entity.getPhone());
+        emailHistoryService.isNotExpiredEmail(entity.getEmail());
         if (!entity.getVisible() || !entity.getStatus().equals(ProfileStatus.REGISTRATION)) {
             log.error("registration not completed");
             String message = resourceBundleMessageSource.getMessage("registration.not.completed", null, new Locale(language.name()));
             throw new AppBadException(message);
         }
-        smsHistoryService.checkPhoneLimit(phone);
-        smsService.sendSms(phone);
-        sendRegistrationPhone(entity.getId(), phone);
-        return ApiResponse.ok("To complete your registration please verify your phone.");
+       /* smsHistoryService.checkPhoneLimit(phone);
+        smsService.sendSms(phone);*/
+//        sendRegistrationPhone(entity.getId(), email);
+        emailHistoryService.checkEmailLimit(email);
+        sendRegistrationRandomCodeEmail(entity.getId(), email);
+        return ApiResponse.ok(List.of("To complete your registration please verify your phone."));
+    }
+
+    public void sendRegistrationEmail(String profileId, String email) {
+        // send email
+        String url = "http://localhost:8080/api/v1/authorization/verification/" + profileId;
+        String formatText = "<style>\n" +
+                "    a:link, a:visited {\n" +
+                "        background-color: #f44336;\n" +
+                "        color: white;\n" +
+                "        padding: 14px 25px;\n" +
+                "        text-align: center;\n" +
+                "        text-decoration: none;\n" +
+                "        display: inline-block;\n" +
+                "    }\n" +
+                "\n" +
+                "    a:hover, a:active {\n" +
+                "        background-color: red;\n" +
+                "    }\n" +
+                "</style>\n" +
+                "<div style=\"text-align: center\">\n" +
+                "    <h1>Welcome to interview.uz web portal</h1>\n" +
+                "    <br>\n" +
+                "    <p>Please button lick below to complete registration</p>\n" +
+                "    <div style=\"text-align: center\">\n" +
+                "        <a href=\"%s\" target=\"_blank\">This is a link</a>\n" +
+                "    </div>";
+        String text = String.format(formatText, url);
+        mailSenderService.send(email, "Complete registration", text);
+        emailHistoryService.crete(email, text); // create history
+    }
+
+    public void sendRegistrationRandomCodeEmail(String profileId, String email) {
+        // send email
+        String url = "http://localhost:8080/api/v1/authorization/verification/" + profileId;
+        String text = String.format(RandomUtil.getRandomSmsCode(), url);
+        mailSenderService.send(email, "Complete registration", text);
+        emailHistoryService.crete(email, text); // create history
     }
 }
