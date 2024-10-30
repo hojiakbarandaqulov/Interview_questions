@@ -59,7 +59,7 @@ public class AuthorizationService {
         sendRegistrationEmail(profileEntity.getId(), profileEntity.getEmail());
        /* smsService.sendSms(registrationDTO.getEmail());
         sendRegistrationPhone(profileEntity.getId(), registrationDTO.getEmail());*/
-        return ApiResponse.ok(List.of("Successfully registered"),1);
+        return ApiResponse.ok(List.of("Successfully registered"), countColumn());
     }
 
     public void sendRegistrationPhone(String profileId, String phone) {
@@ -112,8 +112,9 @@ public class AuthorizationService {
         }
         profileRepository.updateStatus(userId, ProfileStatus.ACTIVE);
         String message = resourceBundleMessageSource.getMessage("success", null, new Locale(language.name()));
-        return ApiResponse.ok(List.of(message),1);
+        return ApiResponse.ok(List.of(message), countColumn());
     }
+
     public ApiResponse<AuthorizationResponseDTO> login(LoginDTO dto, AppLanguage language) {
         /*Optional<ProfileEntity> optional = profileRepository.findByPhoneAndPasswordAndVisibleIsTrue(
                 dto.getPhone(),
@@ -137,10 +138,10 @@ public class AuthorizationService {
         responseDTO.setId(entity.getId());
         responseDTO.setRole(entity.getRole());
         responseDTO.setJwt(JwtUtil.encode(responseDTO.getId(), entity.getPhone(), responseDTO.getRole()));
-        return ApiResponse.ok(List.of(responseDTO),1);
+        return ApiResponse.ok(List.of(responseDTO), countColumn());
     }
 
-    public ApiResponse<?> registrationResendPhone(String email, AppLanguage language) {
+    public ApiResponse<?> registrationResendEmail(String email, AppLanguage language) {
         /*Optional<ProfileEntity> optional = profileRepository.findByPhoneAndVisibleTrue(phone);*/
         Optional<ProfileEntity> optional = profileRepository.findByEmailAndVisibleTrue(email);
         if (optional.isEmpty()) {
@@ -161,12 +162,12 @@ public class AuthorizationService {
 //        sendRegistrationPhone(entity.getId(), email);
         emailHistoryService.checkEmailLimit(email);
         sendRegistrationRandomCodeEmail(entity.getId(), email);
-        return ApiResponse.ok(List.of("To complete your registration please verify your phone."),1);
+        return ApiResponse.ok(List.of("To complete your registration please verify your phone."), countColumn());
     }
 
     public void sendRegistrationEmail(String profileId, String email) {
         // send email
-        String url = String.format("http://localhost:8080/api/v1/authorization/verification/"+profileId);
+        String url = String.format("http://localhost:8080/api/v1/authorization/verification/" + profileId);
         String formatText = "<style>\n" +
                 "    a:link, a:visited {\n" +
                 "        background-color: #f44336;\n" +
@@ -199,5 +200,13 @@ public class AuthorizationService {
         String text = String.format(RandomUtil.getRandomSmsCode(), url);
         mailSenderService.send(email, "Complete registration", text);
         emailHistoryService.create(email, text); // create history
+    }
+
+    public int countColumn() {
+        int i = profileRepository.countColumns();
+        if (i==0){
+            throw new AppBadException("no profile table column");
+        }
+        return i;
     }
 }

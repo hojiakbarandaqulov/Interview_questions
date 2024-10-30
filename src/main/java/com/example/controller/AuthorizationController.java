@@ -58,10 +58,10 @@ public class AuthorizationController {
         return ResponseEntity.ok().body(response);
     }
 
-    @GetMapping("/registration/resend/{phone}")
-    public ResponseEntity<ApiResponse<?>> registrationResend(@PathVariable("phone") String phone,
+    @GetMapping("/registration/resend/{email}")
+    public ResponseEntity<ApiResponse<?>> registrationResend(@PathVariable("email") String email,
                                                              @RequestHeader(value = "Accept-Language", defaultValue = "uz") AppLanguage language) {
-        ApiResponse<?> response = authorizationService.registrationResendPhone(phone, language);
+        ApiResponse<?> response = authorizationService.registrationResendEmail(email, language);
         return ResponseEntity.ok().body(response);
     }
 }

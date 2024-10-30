@@ -23,11 +23,10 @@ public class ApiResponse<T> {
 
     }
 
-    public ApiResponse(Integer code, Boolean isError, int total) {
+    public ApiResponse(Integer code, Boolean isError) {
         this.code = code;
         this.isError = isError;
         this.data = null;
-//        this.total = total;
     }
 
     public ApiResponse(String message, Integer code, Boolean isError) {

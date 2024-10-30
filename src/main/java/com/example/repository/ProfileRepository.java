@@ -24,4 +24,7 @@ public interface ProfileRepository extends JpaRepository<ProfileEntity, String> 
     Optional<ProfileEntity> findByEmailAndVisibleTrue(String email);
 
     Optional<ProfileEntity> findByEmailAndPasswordAndVisibleIsTrue(String email, String md5);
+
+    @Query(value = "SELECT COUNT(*) FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'profile'", nativeQuery = true)
+    int countColumns();;
 }
