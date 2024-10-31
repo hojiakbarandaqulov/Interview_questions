@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 public class RegistrationDTO {
+
     @NotBlank(message = "name required")
     private String name;
 

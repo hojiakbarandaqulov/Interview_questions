@@ -29,7 +29,6 @@ public class OpenAPIConfig {
         contact.setName("BezKoder");
         contact.setUrl("https://www.bezkoder.com");
 
-
         Info info = new Info()
                 .title("Interview_questions Management API")
                 .version("1.0")

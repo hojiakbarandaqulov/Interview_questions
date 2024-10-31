@@ -52,5 +52,4 @@ public class CustomUserDetail implements UserDetails {
     public boolean isEnabled() {
         return profile.getVisible();
     }
-
 }
