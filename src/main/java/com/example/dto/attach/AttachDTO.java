@@ -9,27 +9,20 @@ import java.time.LocalDateTime;
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AttachDTO {
+    private String id;
+    private String originalName;
+    private String path;
+    private Long size;
+    private String extension;
+    private LocalDateTime createdData;
+    private String url;
+    public AttachDTO(String id, String s) {
+    }
+
 
     public AttachDTO() {
 
     }
 
-    public AttachDTO(String id, String url) {
-        this.id = id;
-        this.url = url;
-    }
-
-    public AttachDTO(String id, String url,String extension) {
-        this.id = id;
-        this.url = url;
-        this.extension = extension;
-    }
-
-    private String id;
-    private String originName;
-    private Long size;
-    private String extension;
-    private LocalDateTime createdData;
-    private String url;
 }
 

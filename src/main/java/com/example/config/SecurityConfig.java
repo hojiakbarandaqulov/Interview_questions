@@ -60,6 +60,7 @@ public class SecurityConfig {
                     .requestMatchers("/api/v1/authorization/**").permitAll()
                     .requestMatchers("/api/v1/profile/**").permitAll()
                     .requestMatchers("/api/v1/auth/**").permitAll()
+                    .requestMatchers("/api/v1/attach/**").permitAll()
                     .anyRequest()
                     .authenticated();
         }).formLogin(Customizer.withDefaults());

@@ -1,6 +1,6 @@
 package com.example.dto;
 
-import com.example.entity.ProfileEntity;
+import com.example.dto.attach.AttachDTO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -60,8 +60,9 @@ public class ApiResponse<T> {
         return new ApiResponse<T>(200, false, data,total);
     }
 
-    public static <T> ApiResponse<T> ok(Boolean isError, List<T> data, int total) {
-        return new ApiResponse<T>(200, false, data, total);
+
+    public static <T> ApiResponse<T> ok(Boolean isError, List<T> data) {
+        return new ApiResponse<T>(200, false, data);
     }
 
     public static <T> ApiResponse<T> bad(String message) {
@@ -77,4 +78,7 @@ public class ApiResponse<T> {
     }
 
 
+    public static ApiResponse<AttachDTO> ok(List<AttachDTO> dto) {
+        return new ApiResponse<AttachDTO>(200,false, dto);
+    }
 }

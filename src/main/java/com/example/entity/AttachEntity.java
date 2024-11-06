@@ -7,42 +7,27 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDateTime;
-
-
 @Entity
 @Table(name = "attach")
 @Getter
 @Setter
 public class AttachEntity {
     @Id
-    @GeneratedValue(generator = "system-uuid")
-    @GenericGenerator(name = "system-uuid", strategy = "uuid")
+    @Column(length = 255)
     private String id;
 
-    @Column(name = "create_id")
-    private String createId;
-
-    @Column(name = "path")
-    private String path;
-
-    @Column(name = "extension")
-    private String extension;
-
-    @Column(name = "origen_name")
-    private String origenName;
+    @Column(name = "orginal_name")
+    private String originalName;
 
     @Column(name = "size")
     private Long size;
 
-    @Column(name = "compressed_id")
-    private String compressedId;
+    @Column(name = "extension")
+    private String extension;
 
-    @Column(name = "is_compressed")
-    private Boolean isCompressed = Boolean.FALSE;
+    @Column(name = "path")
+    private String path;
 
     @Column(name = "created_date")
     private LocalDateTime createdDate = LocalDateTime.now();
-
-    @Column(name = "visible")
-    private Boolean visible = true;
 }
