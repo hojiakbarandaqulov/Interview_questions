@@ -78,7 +78,11 @@ public class ApiResponse<T> {
     }
 
 
-    public static ApiResponse<AttachDTO> ok(List<AttachDTO> dto) {
-        return new ApiResponse<AttachDTO>(200,false, dto);
+//    public static ApiResponse<AttachDTO> ok(List<AttachDTO> dto) {
+//        return new ApiResponse<AttachDTO>(200,false, dto);
+//    }
+
+    public static <T> ApiResponse<T> ok(List<T> data) {
+        return new ApiResponse<T>(200, false, data);
     }
 }

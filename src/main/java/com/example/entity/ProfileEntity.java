@@ -52,6 +52,13 @@ public class ProfileEntity {
     @JoinColumn(name = "photo_id", insertable = false, updatable = false)
     private AttachEntity photo;
 
+    @Column(name = "category_id")
+    private Long categoryId;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "country_id", insertable = false, updatable = false)
+    private CategoryEntity country;
+
+
     @Column(name = "visible")
     private Boolean visible=Boolean.TRUE;
 
