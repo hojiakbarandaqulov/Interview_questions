@@ -26,6 +26,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.*;
+
+
 @Slf4j
 @Service
 public class AttachService {
@@ -51,7 +53,7 @@ public class AttachService {
         }
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            ImageIO.write(originalImage, "png", baos);
+            ImageIO.write(originalImage, "jpg", baos);
 
             baos.flush();
             byte[] imageInByte = baos.toByteArray();
@@ -125,20 +127,19 @@ public class AttachService {
         });
     }
 
-    public ResponseEntity download(String attachId) {
+    public ResponseEntity<Resource> download(String fileName) {
+        AttachEntity entity = get(fileName);
         try {
-            AttachEntity entity = get(attachId);
-            String path = entity.getPath() + "/" + attachId;
-            Path file = Paths.get("uploads/" + path);
+            Path file = Paths.get(getPath(entity));
             Resource resource = new UrlResource(file.toUri());
-
             if (resource.exists() || resource.isReadable()) {
-                return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
-                        "attachment; filename=\"" + entity.getOriginalName() + "\"").body(resource);
+                return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + entity.getOriginalName() + "\"").body(resource);
             } else {
+                log.warn("Attach error : Could not read the file!");
                 throw new RuntimeException("Could not read the file!");
             }
         } catch (MalformedURLException e) {
+            log.warn("Attach error : {}", e.getMessage());
             throw new RuntimeException("Error: " + e.getMessage());
         }
     }
@@ -175,5 +176,9 @@ public class AttachService {
         dto.setId(attachId);
         dto.setUrl(serverUrl + "/" + "uploads/" + attach.getPath() + "/" + attachId);
         return dto;
+    }
+
+    private String getPath(AttachEntity entity) {
+        return attachUrl + "/" + entity.getPath() + "/" + entity.getId() + "." + entity.getExtension();
     }
 }
