@@ -26,18 +26,12 @@ public class AttachController {
     private AttachService attachService;
 
     @PostMapping("/upload")
-//    @Operation(summary = "upload api", description = "Api list attach create")
+    @Operation(summary = "upload api", description = "Api list attach create")
     public ResponseEntity<AttachDTO> create(@RequestParam("file") MultipartFile file) {
         log.info("upload attach  = {}", file.getOriginalFilename());
         AttachDTO response = attachService.saveAttach(file);
         return ResponseEntity.ok(response);
     }
-
- /*   @PostMapping("/upload")
-    public ResponseEntity<AttachDTO> upload(@RequestParam("file") MultipartFile file) {
-        AttachDTO attachDTO = attachService.saveAttach(file);
-        return ResponseEntity.ok().body(attachDTO);
-    }*/
 
     @GetMapping(value = "/open/{fileName}", produces = MediaType.IMAGE_PNG_VALUE)
     public byte[] open(@PathVariable("fileName") String fileName) {
@@ -45,7 +39,7 @@ public class AttachController {
     }
 
     @GetMapping("/download/{fileName}")
-    public ResponseEntity download(@PathVariable("fileName") String fileName) {
+    public ResponseEntity<?> download(@PathVariable("fileName") String fileName) {
         return attachService.download(fileName);
     }
 
