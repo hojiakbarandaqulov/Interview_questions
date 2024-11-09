@@ -26,7 +26,6 @@ public class ProfileController {
         this.profileService = profileService;
     }
 
-
     @PutMapping("/update/{id}")
     public ApiResponse<?> updateProfile(@Valid @RequestBody ProfileUpdateDTO profile,
                                         @PathVariable String id,

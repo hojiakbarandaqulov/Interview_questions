@@ -18,7 +18,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MzI3MDkyM
   "from": "4546"
 }
 
-
 ### Authorization
 POST https://notify.eskiz.uz/api/v1/authorization/login
 Content-Type: application/json
