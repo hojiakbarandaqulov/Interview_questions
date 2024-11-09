@@ -49,7 +49,6 @@ public class AttachController {
                                                           @RequestParam(value = "size", defaultValue = "10") Integer size) {
         PageImpl<AttachDTO> response = attachService.getAttachPagination(page - 1, size);
         return ResponseEntity.ok().body(response);
-
     }
 
     @PreAuthorize("hasRole('ADMIN')")

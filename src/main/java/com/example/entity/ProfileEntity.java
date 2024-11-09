@@ -58,7 +58,6 @@ public class ProfileEntity {
     @JoinColumn(name = "country_id", insertable = false, updatable = false)
     private CategoryEntity country;
 
-
     @Column(name = "visible")
     private Boolean visible=Boolean.TRUE;
 

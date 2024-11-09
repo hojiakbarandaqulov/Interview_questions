@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.*;
 @EnableMethodSecurity(prePostEnabled = true)
 @RestController
 @Slf4j
-@Service
 @RequestMapping("/api/v1/authorization")
 @Tag(name = "Auth Controller", description = "Api list for authorization, registration and other ....")
 public class AuthorizationController {
