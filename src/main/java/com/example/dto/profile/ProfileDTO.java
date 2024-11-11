@@ -1,13 +1,9 @@
 package com.example.dto.profile;
 
-import com.example.entity.AttachEntity;
-import com.example.entity.CategoryEntity;
 import com.example.enums.ProfileRole;
 import com.example.enums.ProfileStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import jakarta.persistence.*;
 import lombok.Data;
-import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDateTime;
 

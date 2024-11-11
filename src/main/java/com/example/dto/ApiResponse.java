@@ -1,6 +1,8 @@
 package com.example.dto;
 
 import com.example.dto.attach.AttachDTO;
+import com.example.dto.category.CategoryCreateDTO;
+import com.example.dto.category.CategoryResponseDTO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -85,4 +87,5 @@ public class ApiResponse<T> {
     public static <T> ApiResponse<T> ok(List<T> data) {
         return new ApiResponse<T>(200, false, data);
     }
+
 }

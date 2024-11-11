@@ -30,10 +30,10 @@ public class ProfileService {
         ProfileEntity profileEntity = get(id);
         profileEntity.setName(profile.getName());
         profileEntity.setSurname(profile.getSurname());
-        if (profile.getCategoryId() != null) {
+      /*  if (profile.getCategoryId() != null) {
             log.info("Category id set {}", id);
             profileEntity.setCategoryId(profile.getCategoryId());
-        }
+        }*/
         if (profile.getPhotoId() != null) {
             log.info("Photo id set {}", id);
             profileEntity.setPhotoId(profile.getPhotoId());

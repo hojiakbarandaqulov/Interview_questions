@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CategoryResponseDTO {
-    private Integer id;
+    private Long id;
     private String name;
     private LocalDateTime createdDate;
 }

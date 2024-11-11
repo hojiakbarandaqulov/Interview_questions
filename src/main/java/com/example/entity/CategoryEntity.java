@@ -1,32 +1,21 @@
 package com.example.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.Data;
 
+import java.time.LocalDateTime;
+
+@Data
 @Entity
 @Table(name = "category")
-public class CategoryEntity extends BaseIdentityEntity {
+public class CategoryEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-    @Column(name = "name_uz")
-    private String nameUz;
-    @Column(name = "name_ru")
-    private String nameRu;
-    @Column(name = "name_en")
-    private String nameEn;
-
-    @Column(name = "name", unique = true, nullable = false)
+    @Column(name = "name")
     private String name;
 
-
-    public CategoryEntity(Long id, String nameUz, String nameRu, String nameEn) {
-        super(id);
-        this.nameUz = nameUz;
-        this.nameRu = nameRu;
-        this.nameEn = nameEn;
-    }
-
-    public CategoryEntity() {
-
-    }
+    @Column()
+    private LocalDateTime createdDate;
 }
