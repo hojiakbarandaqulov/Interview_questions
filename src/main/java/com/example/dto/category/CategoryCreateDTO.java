@@ -10,6 +10,6 @@ public class CategoryCreateDTO {
     @NotBlank(message = "category name is required")
     private String name;
 
-    @NotBlank(message = ",,,,,,,,,,,,,,,,")
+    @NotBlank(message = "category description is required")
     private String description;
 }
