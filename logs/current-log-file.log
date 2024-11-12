@@ -655,3 +655,40 @@ Caused by: java.lang.IllegalArgumentException: Not a managed type: class java.la
 11 Nov 2024 - 20:19:56.187 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 3 migrations (execution time 00:00.376s)
 11 Nov 2024 - 20:19:57.326 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 2
 11 Nov 2024 - 20:19:57.433 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+11 Nov 2024 - 20:46:05.276 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=45s44ms440µs).
+11 Nov 2024 - 21:30:16.816 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3m16s981ms225µs900ns).
+11 Nov 2024 - 21:57:00.479 [main] WARN  o.s.b.t.j.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer - 
+
+Found multiple occurrences of org.json.JSONObject on the class path:
+
+	jar:file:/C:/Users/hojia/.m2/repository/com/vaadin/external/google/android-json/0.0.20131108.vaadin1/android-json-0.0.20131108.vaadin1.jar!/org/json/JSONObject.class
+	jar:file:/C:/Users/hojia/.m2/repository/org/json/json/20231013/json-20231013.jar!/org/json/JSONObject.class
+
+You may wish to exclude one of them to ensure predictable runtime behavior
+
+11 Nov 2024 - 21:57:00.538 [main] INFO  c.e.InterviewQuestionsApplicationTests - Starting InterviewQuestionsApplicationTests using Java 17.0.12 with PID 15520 (started by Xojiakbar in D:\JavaProject\Interview_questions)
+11 Nov 2024 - 21:57:00.538 [main] INFO  c.e.InterviewQuestionsApplicationTests - The following 1 profile is active: "prod"
+11 Nov 2024 - 21:57:02.173 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+11 Nov 2024 - 21:57:02.291 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 107 ms. Found 4 JPA repository interfaces.
+11 Nov 2024 - 21:57:03.538 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+11 Nov 2024 - 21:57:03.699 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+11 Nov 2024 - 21:57:03.765 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+11 Nov 2024 - 21:57:04.360 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+11 Nov 2024 - 21:57:04.398 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+11 Nov 2024 - 21:57:05.505 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@13374ca6
+11 Nov 2024 - 21:57:05.509 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+11 Nov 2024 - 21:57:05.738 [main] WARN  org.hibernate.dialect.Dialect - HHH000511: The 10.23.0 version for [org.hibernate.dialect.PostgreSQLDialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 12.0.0. Check the community dialects project for available legacy versions.
+11 Nov 2024 - 21:57:08.148 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+11 Nov 2024 - 21:57:09.350 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+11 Nov 2024 - 21:57:10.828 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+11 Nov 2024 - 21:57:18.296 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+11 Nov 2024 - 21:57:18.400 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+11 Nov 2024 - 21:57:18.400 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+11 Nov 2024 - 21:57:21.210 [main] INFO  c.e.InterviewQuestionsApplicationTests - Started InterviewQuestionsApplicationTests in 21.142 seconds (process running for 23.134)
+11 Nov 2024 - 21:57:21.593 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://95.130.227.202:5432/interview_questionsDB (PostgreSQL 10.23)
+11 Nov 2024 - 21:57:22.830 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 3 migrations (execution time 00:00.677s)
+11 Nov 2024 - 21:57:23.791 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 2
+11 Nov 2024 - 21:57:23.863 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+11 Nov 2024 - 21:57:24.966 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+11 Nov 2024 - 21:57:24.976 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+11 Nov 2024 - 21:57:26.101 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
