@@ -1,0 +1,10 @@
+19 Nov 2024 - 16:54:26.381 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=18h13m13s168ms6µs400ns).
+19 Nov 2024 - 17:04:01.721 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=6m35s298ms38µs500ns).
+19 Nov 2024 - 17:11:31.518 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m59s674ms144µs600ns).
+19 Nov 2024 - 17:45:50.142 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4m18s64ms615µs700ns).
+19 Nov 2024 - 17:56:16.418 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=56s89ms80µs400ns).
+19 Nov 2024 - 17:57:07.178 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=50s762ms427µs).
+19 Nov 2024 - 17:58:54.388 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+19 Nov 2024 - 17:58:54.415 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+19 Nov 2024 - 17:59:04.426 [SpringApplicationShutdownHook] WARN  com.zaxxer.hikari.pool.HikariPool - Timed-out waiting for close connection executor to shutdown
+19 Nov 2024 - 17:59:04.427 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

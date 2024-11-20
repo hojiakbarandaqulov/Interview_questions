@@ -36,5 +36,4 @@ public class BaseIdentityEntity {
     public BaseIdentityEntity(Long id) {
         this.id = id;
     }
-
 }

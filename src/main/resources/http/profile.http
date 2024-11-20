@@ -1,0 +1,21 @@
+###profile data update
+PUT http://localhost:8080/api/v1/profile/update/12f59a8b-1010-4826-beb3-7e4c29629888
+Content-Type: application/json
+
+{
+  "name": "Xojiakabr",
+  "surname": "Jons",
+  "categoryId": 1,
+  "photoId": "1"
+}
+
+
+### profile password update
+PUT http://localhost:8080/api/v1/profile/update/password/
+Content-Type: application/json
+
+{
+  "oldPassword": "",
+  "newPassword": "",
+  "confirmation": ""
+}

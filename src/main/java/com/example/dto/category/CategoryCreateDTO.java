@@ -7,9 +7,12 @@ import lombok.Data;
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CategoryCreateDTO {
-    @NotBlank(message = "category name is required")
-    private String name;
-
-    @NotBlank(message = "category description is required")
-    private String description;
+    @NotBlank(message = "orderNumber required")
+    private Integer orderNumber;
+    @NotBlank(message = "nameUz required")
+    private String nameUz;
+    @NotBlank(message = "nameRu required")
+    private String nameRu;
+    @NotBlank(message = "nameEn required")
+    private String nameEn;
 }
