@@ -26,4 +26,5 @@ public class BaseEntity {
     private LocalDateTime deletedDate;
     @Column(name = "deletedId")
     private String deletedId;
+
 }

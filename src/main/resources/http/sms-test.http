@@ -38,8 +38,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTkwNzE0M
   "from": "4546"
 }
 
-
-
 ###
 GET http://95.130.227.202:9091/api/v1/authorization/verification
 Content-Type: application/json

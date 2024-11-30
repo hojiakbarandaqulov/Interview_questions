@@ -1,8 +1,10 @@
 package com.example.service;
 
 import com.example.dto.ApiResponse;
+import com.example.dto.attach.AttachDTO;
 import com.example.dto.profile.ProfileUpdateDTO;
 import com.example.dto.profile.ProfileUpdatePasswordDTO;
+import com.example.entity.AttachEntity;
 import com.example.entity.ProfileEntity;
 import com.example.enums.AppLanguage;
 import com.example.exp.AppBadException;
@@ -11,16 +13,20 @@ import com.example.utils.MD5Util;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Locale;
+
 @Slf4j
 @Service
 public class ProfileService {
+    private final AttachService attachService;
     private final ProfileRepository profileRepository;
     private final ResourceBundleMessageSource resourceBundleMessageSource;
 
-    public ProfileService(ProfileRepository profileRepository, ResourceBundleMessageSource resourceBundleMessageSource) {
+    public ProfileService(AttachService attachService, ProfileRepository profileRepository, ResourceBundleMessageSource resourceBundleMessageSource) {
+        this.attachService = attachService;
         this.profileRepository = profileRepository;
         this.resourceBundleMessageSource = resourceBundleMessageSource;
     }
@@ -56,5 +62,13 @@ public class ProfileService {
     public ProfileEntity get(String id) {
         log.info("get {}", id);
         return profileRepository.findById(id).orElseThrow(() -> new AppBadException("user.not.found"));
+    }
+
+    public ApiResponse<?> saveProfilePhoto(MultipartFile file, String id) {
+        AttachEntity attachEntity = attachService.getOrginalName(file.getOriginalFilename());
+        ProfileEntity profileEntity = get(id);
+        profileEntity.setPhotoId(attachEntity.getId());
+        profileRepository.save(profileEntity);
+        return ApiResponse.ok(List.of("success"));
     }
 }
