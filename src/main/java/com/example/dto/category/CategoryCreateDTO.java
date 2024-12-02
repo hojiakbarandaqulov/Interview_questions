@@ -7,6 +7,7 @@ import lombok.Data;
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CategoryCreateDTO {
+
     @NotBlank(message = "name required")
     private String name;
 

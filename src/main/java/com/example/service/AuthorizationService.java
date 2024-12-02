@@ -19,11 +19,9 @@ import com.example.utils.MD5Util;
 import com.example.utils.RandomUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.tomcat.util.http.parser.Authorization;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 
@@ -59,7 +57,7 @@ public class AuthorizationService {
         sendRegistrationEmail(profileEntity.getId(), profileEntity.getEmail());
        /* smsService.sendSms(registrationDTO.getEmail());
         sendRegistrationPhone(profileEntity.getId(), registrationDTO.getEmail());*/
-        return ApiResponse.ok(List.of("Successfully registered"), countColumn());
+        return ApiResponse.ok();
     }
 
     public void sendRegistrationPhone(String profileId, String phone) {
@@ -112,7 +110,7 @@ public class AuthorizationService {
         }
         profileRepository.updateStatus(userId, ProfileStatus.ACTIVE);
         String message = resourceBundleMessageSource.getMessage("success", null, new Locale(language.name()));
-        return ApiResponse.ok(List.of(message), countColumn());
+        return ApiResponse.ok();
     }
 
     public ApiResponse<AuthorizationResponseDTO> login(LoginDTO dto, AppLanguage language) {
@@ -138,7 +136,7 @@ public class AuthorizationService {
         responseDTO.setId(entity.getId());
         responseDTO.setRole(entity.getRole());
         responseDTO.setJwt(JwtUtil.encode(responseDTO.getId(), entity.getPhone(), responseDTO.getRole()));
-        return ApiResponse.ok(List.of(responseDTO), countColumn());
+        return ApiResponse.ok();
     }
 
     public ApiResponse<?> registrationResendEmail(String email, AppLanguage language) {
@@ -162,7 +160,7 @@ public class AuthorizationService {
 //        sendRegistrationPhone(entity.getId(), email);
         emailHistoryService.checkEmailLimit(email);
         sendRegistrationRandomCodeEmail(entity.getId(), email);
-        return ApiResponse.ok(List.of("To complete your registration please verify your phone."), countColumn());
+        return ApiResponse.ok();
     }
 
     public void sendRegistrationEmail(String profileId, String email) {

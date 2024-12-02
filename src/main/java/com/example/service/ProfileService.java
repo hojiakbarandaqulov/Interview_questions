@@ -31,7 +31,6 @@ public class ProfileService {
         this.resourceBundleMessageSource = resourceBundleMessageSource;
     }
 
-
     public ApiResponse<String> update(ProfileUpdateDTO profile, String id, AppLanguage language) {
         ProfileEntity profileEntity = get(id);
         profileEntity.setName(profile.getName());

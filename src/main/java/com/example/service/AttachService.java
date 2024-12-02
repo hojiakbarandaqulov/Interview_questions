@@ -17,7 +17,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
@@ -29,12 +28,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.*;
-
-
 @Slf4j
 @Service
 public class AttachService {
-
     @Value("${server.url}")
     private String serverUrl;
 
@@ -79,8 +75,6 @@ public class AttachService {
         }
         return new byte[0];
     }
-
-
 /*public ResponseEntity<Resource> open(String fileName) {
     Path filePath = Paths.get("uploads/" + fileName).normalize();
     Resource resource = null;
@@ -144,7 +138,6 @@ public class AttachService {
         }
         return null;
     }
-
 
     public AttachDTO toDTO(AttachEntity entity) {
         AttachDTO dto = new AttachDTO();

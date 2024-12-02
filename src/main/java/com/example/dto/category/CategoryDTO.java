@@ -18,4 +18,5 @@ public class CategoryDTO {
     private LocalDateTime createdDate;
     private Integer prtId;
     private Integer orderNumber;
+
 }

@@ -10,7 +10,6 @@ import lombok.ToString;
 @Setter
 @ToString
 public class SmsDTO {
-
     @NotNull(message = "phone required")
     private String phone;
 

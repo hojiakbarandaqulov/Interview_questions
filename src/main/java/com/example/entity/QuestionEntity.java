@@ -35,4 +35,14 @@ public class QuestionEntity {
 
     @Column(name = "question_lesson_type")
     private String questionLessonType;
+
+    @Column(name ="url_key")
+    private String urlKey;
+
+    @Column(name = "contaent_type")
+    private String contentType;
+
+    @Column(name = "super_admin_uername")
+    private String superAdminUsername;
+
 }

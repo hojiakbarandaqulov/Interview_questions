@@ -15,7 +15,6 @@ public class BaseIdentityEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(name = "visible")
     private Boolean visible = Boolean.TRUE;
     @Column(name = "created_date")
@@ -36,4 +35,5 @@ public class BaseIdentityEntity {
     public BaseIdentityEntity(Long id) {
         this.id = id;
     }
+
 }

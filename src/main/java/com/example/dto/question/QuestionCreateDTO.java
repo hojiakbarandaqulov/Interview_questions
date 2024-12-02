@@ -24,7 +24,7 @@ public class QuestionCreateDTO {
     @NotBlank(message = "contentType required")
     private String contentType;
 
+    @NotBlank(message = "superAdminUsername required")
+    private String superAdminUsername;
 
-
-    
 }

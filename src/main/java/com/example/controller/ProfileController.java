@@ -51,7 +51,8 @@ public class ProfileController {
 
     @PostMapping("/create/photo/{id}")
     @Operation(summary = "upload api", description = "Api list attach create")
-    public ResponseEntity<ApiResponse<?>> saveProfilePhoto(@RequestParam("file") MultipartFile file,  @PathVariable String id) {
+    public ResponseEntity<ApiResponse<?>> saveProfilePhoto(@RequestParam("file") MultipartFile file,  @PathVariable String id,
+                                                           @RequestParam(defaultValue = "uz") AppLanguage language) {
         log.info("upload attach  = {}", file.getOriginalFilename());
         ApiResponse<?> response = profileService.saveProfilePhoto(file,id);
         return ResponseEntity.ok(response);

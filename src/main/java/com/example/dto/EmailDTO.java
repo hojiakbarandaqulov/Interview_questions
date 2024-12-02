@@ -26,4 +26,5 @@ public class EmailDTO {
 
     @NotBlank(message = "CreatedDate required")
     private LocalDateTime createdDate;
+
 }
