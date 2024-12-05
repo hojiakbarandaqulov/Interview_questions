@@ -57,5 +57,4 @@ public class ProfileController {
         ApiResponse<?> response = profileService.saveProfilePhoto(file,id);
         return ResponseEntity.ok(response);
     }
-
 }

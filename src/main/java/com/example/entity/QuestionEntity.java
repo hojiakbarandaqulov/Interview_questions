@@ -8,14 +8,11 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
-@Table(name = "question_entity")
+@Table(name = "question")
 public class QuestionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "language")
-    private String language;
 
     @Column(name = "title")
     private String title;
@@ -36,10 +33,10 @@ public class QuestionEntity {
     @Column(name = "question_lesson_type")
     private String questionLessonType;
 
-    @Column(name ="url_key")
+    @Column(name ="url_key",unique = true)
     private String urlKey;
 
-    @Column(name = "contaent_type")
+    @Column(name = "content_type")
     private String contentType;
 
     @Column(name = "super_admin_uername")

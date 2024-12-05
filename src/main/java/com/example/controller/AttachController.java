@@ -28,7 +28,6 @@ public class AttachController {
     private AttachService attachService;
 
     @PostMapping("/upload")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN','RPLE_SUPER_ADMIN','ROLE_USER')")
     @Operation(summary = "upload api", description = "Api list attach create")
     public ResponseEntity<AttachDTO> create(@RequestParam("file") MultipartFile file) {
         log.info("upload attach  = {}", file.getOriginalFilename());
@@ -41,13 +40,11 @@ public class AttachController {
         return attachService.open_general(fileName);
     }
 
-
 /*   @GetMapping(value = "/open/{fileName}", produces = MediaType.IMAGE_PNG_VALUE)
     public ResponseEntity<Resource> open(@PathVariable("fileName") String fileName) throws Exception {
         return attachService.open(fileName);
     }*/
-
-  /*  @GetMapping("/download/{fileName}")
+/*  @GetMapping("/download/{fileName}")
     public ResponseEntity<?> download(@PathVariable("fileName") String fileName) {
         return attachService.download(fileName);
     }*/
@@ -58,7 +55,6 @@ public class AttachController {
                 "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_SUPER_ADMIN','ROLE_ADMIN')")
     @GetMapping(value = "/pagination")
     public ResponseEntity<PageImpl<AttachDTO>> pagination(@RequestParam(value = "page", defaultValue = "1") Integer page,
                                                           @RequestParam(value = "size", defaultValue = "10") Integer size) {
@@ -66,7 +62,6 @@ public class AttachController {
         return ResponseEntity.ok().body(response);
     }
 
-    @PreAuthorize("hasRole('ROLE_SUPER_ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Boolean> delete(@PathVariable("id") String id) {
         Boolean delete = attachService.delete(id);

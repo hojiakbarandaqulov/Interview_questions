@@ -57,24 +57,21 @@ public class SecurityConfig {
                     .requestMatchers("/swagger-ui/**").permitAll()
                     .requestMatchers("/webjars/**").permitAll()
                     .requestMatchers("/swagger-ui.html").permitAll()
-                    .requestMatchers("/auth/registration").permitAll()
                     .requestMatchers("/api/v1/authorization/**").permitAll()
+                    .requestMatchers("/api/v1/authorization/login").permitAll()
                     .requestMatchers("/api/v1/profile/**").permitAll()
-                    .requestMatchers("/api/v1/auth/**").permitAll()
                     .requestMatchers("/api/v1/attach/**").permitAll()
                     .anyRequest()
                     .authenticated();
-        }).formLogin(Customizer.withDefaults());
-
+        });
+        http.csrf(AbstractHttpConfigurer::disable); // csrf o'chirilgan
+        http.csrf(AbstractHttpConfigurer::disable);// csrf o'chirilgan
         http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
-        http.csrf(AbstractHttpConfigurer::disable);
-        http.cors(AbstractHttpConfigurer::disable);
-
         http.cors(httpSecurityCorsConfigurer -> { // cors konfiguratsiya qilingan
             CorsConfiguration configuration = new CorsConfiguration();
-            configuration.setAllowedOriginPatterns(List.of("*"));
-            configuration.setAllowedMethods(List.of("*"));
-            configuration.setAllowedHeaders(List.of("*"));
+            configuration.setAllowedOriginPatterns(Arrays.asList("*"));
+            configuration.setAllowedMethods(Arrays.asList("*"));
+            configuration.setAllowedHeaders(Arrays.asList("*"));
 
             UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
             source.registerCorsConfiguration("/**", configuration);
@@ -98,3 +95,4 @@ public class SecurityConfig {
         };
     }
 }
+

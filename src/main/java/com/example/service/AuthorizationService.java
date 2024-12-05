@@ -22,6 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 
@@ -57,7 +58,7 @@ public class AuthorizationService {
         sendRegistrationEmail(profileEntity.getId(), profileEntity.getEmail());
        /* smsService.sendSms(registrationDTO.getEmail());
         sendRegistrationPhone(profileEntity.getId(), registrationDTO.getEmail());*/
-        return ApiResponse.ok();
+        return ApiResponse.ok(List.of("registration.completed"),countColumn());
     }
 
     public void sendRegistrationPhone(String profileId, String phone) {
@@ -110,7 +111,7 @@ public class AuthorizationService {
         }
         profileRepository.updateStatus(userId, ProfileStatus.ACTIVE);
         String message = resourceBundleMessageSource.getMessage("success", null, new Locale(language.name()));
-        return ApiResponse.ok();
+        return ApiResponse.ok(List.of(message),countColumn());
     }
 
     public ApiResponse<AuthorizationResponseDTO> login(LoginDTO dto, AppLanguage language) {
@@ -136,7 +137,7 @@ public class AuthorizationService {
         responseDTO.setId(entity.getId());
         responseDTO.setRole(entity.getRole());
         responseDTO.setJwt(JwtUtil.encode(responseDTO.getId(), entity.getPhone(), responseDTO.getRole()));
-        return ApiResponse.ok();
+        return ApiResponse.ok(List.of(responseDTO),countColumn());
     }
 
     public ApiResponse<?> registrationResendEmail(String email, AppLanguage language) {
@@ -160,7 +161,7 @@ public class AuthorizationService {
 //        sendRegistrationPhone(entity.getId(), email);
         emailHistoryService.checkEmailLimit(email);
         sendRegistrationRandomCodeEmail(entity.getId(), email);
-        return ApiResponse.ok();
+        return ApiResponse.ok(List.of("registration.completed"),countColumn());
     }
 
     public void sendRegistrationEmail(String profileId, String email) {

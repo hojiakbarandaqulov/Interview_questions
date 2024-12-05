@@ -20,11 +20,18 @@ public class QuestionController {
 
     @PreAuthorize("hasRole('ROLE_SUPER_ADMIN')")
     @PostMapping("/create/question")
-    public ResponseEntity<ApiResponse<QuestionCreateDTO>> createQuestion(@Valid @RequestBody QuestionCreateDTO questionCreateDTO,
-                                                                         @RequestParam(defaultValue = "uz") AppLanguage language) {
-        ApiResponse<QuestionCreateDTO> apiResponse = questionService.createQuestion(questionCreateDTO, language);
+    public ResponseEntity<ApiResponse<?>> createQuestion(@Valid @RequestBody QuestionCreateDTO questionCreateDTO,
+                                                         @RequestHeader(value = "Accept-Language", defaultValue = "uz") AppLanguage language) {
+        ApiResponse<?> apiResponse = questionService.createQuestion(questionCreateDTO, language);
         return ResponseEntity.ok(apiResponse);
     }
 
-
+    @PreAuthorize("hasRole('ROLE_SUPER_ADMIN')")
+    @PutMapping("/update/question/{id}")
+    public ResponseEntity<ApiResponse<?>> updateQuestion(@Valid @RequestBody QuestionCreateDTO questionCreateDTO,@PathVariable("id") Long id,
+                                                         @RequestHeader(value = "Accept-Language", defaultValue = "uz") AppLanguage language) {
+        ApiResponse<?> apiResponse = questionService.updateQuestion(questionCreateDTO,id, language);
+        return ResponseEntity.ok(apiResponse);
+    }
 }
+

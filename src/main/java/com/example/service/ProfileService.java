@@ -39,23 +39,24 @@ public class ProfileService {
             log.info("Category id set {}", id);
             profileEntity.setCategoryId(profile.getCategoryId());
         }*/
-        if (profile.getPhotoId() != null) {
+        if (profile.getPhotoId() == null) {
             log.info("Photo id set {}", id);
-            profileEntity.setPhotoId(profile.getPhotoId());
+            resourceBundleMessageSource.getMessage("photo.id.not.found",null,new Locale(language.name()));
         }
+        profileEntity.setPhotoId(profile.getPhotoId());
         profileRepository.save(profileEntity);
-        return ApiResponse.ok(List.of("success"));
+        return ApiResponse.ok(List.of("success"),countColumn());
     }
 
     public ApiResponse<?> updatePassword(ProfileUpdatePasswordDTO profile, String id, AppLanguage language) {
         ProfileEntity profileEntity = get(id);
         if (!profile.getConfirmation().equals(profile.getNewPassword())) {
             log.info("Password confirmation not set {}", id);
-            resourceBundleMessageSource.getMessage("You.aren't.validating.password.correctly", null, new Locale(language.name()));
+            resourceBundleMessageSource.getMessage("You.arent.validating.password.correctly", null, new Locale(language.name()));
         }
         profileEntity.setPassword(MD5Util.getMD5(profile.getNewPassword()));
         profileRepository.save(profileEntity);
-        return ApiResponse.ok(List.of("success"));
+        return ApiResponse.ok(List.of("success"),countColumn());
     }
 
     public ProfileEntity get(String id) {
@@ -68,6 +69,14 @@ public class ProfileService {
         ProfileEntity profileEntity = get(id);
         profileEntity.setPhotoId(attachEntity.getId());
         profileRepository.save(profileEntity);
-        return ApiResponse.ok(List.of("success"));
+        return ApiResponse.ok(List.of("success"),countColumn());
+    }
+
+    public int countColumn() {
+        int i = profileRepository.countColumns();
+        if (i==0){
+            throw new AppBadException("no profile table column");
+        }
+        return i;
     }
 }

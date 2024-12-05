@@ -1,7 +1,6 @@
 ### attach upload
 POST http://localhost:8080/api/v1/attach/upload
 Content-Type: multipart/form-data; boundary=WebAppBoundary
-Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MzEwNjk1MDksImlkIjoiZTU4ZWQ3NjMtOTI4Yy00MTU1LWJlZTktZmRiYWFhZGMxNWYzIiwicm9sZSI6IlJPTEVfQURNSU4iLCJ1c2VybmFtZSI6Ijk5ODk5MjQzMTA2OCIsImV4cCI6MTczMTQxNTEwOSwiaXNzIjoiSW50ZXJ2aWV3X3F1ZXN0aW9ucyJ9.O8VswXqk7bUIsG23SYBplQ77d7E3uVnkN8hs5u106-iZGeR1QzZFZd4_9XGBeexF2SdcKo2KKPqLML-KZe1tpw
 
 --WebAppBoundary
 Content-Disposition: form-data; name="file"; filename="file1.png"
