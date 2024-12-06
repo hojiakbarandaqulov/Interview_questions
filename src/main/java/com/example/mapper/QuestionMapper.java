@@ -1,6 +1,7 @@
 package com.example.mapper;
 
 import com.example.dto.question.QuestionCreateDTO;
+import com.example.dto.question.QuestionPaginationDTO;
 import com.example.entity.QuestionEntity;
 import org.aspectj.weaver.patterns.TypePatternQuestions;
 import org.mapstruct.Mapper;
@@ -9,6 +10,7 @@ import org.mapstruct.Mapper;
 public interface QuestionMapper {
     QuestionCreateDTO toDTO(QuestionEntity entity);
     QuestionEntity toEntity(QuestionCreateDTO dto);
+    QuestionPaginationDTO toPaginationDTO(QuestionEntity entity);
 
 
 }

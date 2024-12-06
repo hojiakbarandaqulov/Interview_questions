@@ -4,6 +4,19 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MzMxNTk4MjAsImlkIjoiZTU4ZWQ3NjMtOTI4Yy00MTU1LWJlZTktZmRiYWFhZGMxNWYzIiwicm9sZSI6IlJPTEVfU1VQRVJfQURNSU4iLCJ1c2VybmFtZSI6Ijk5ODk5MjQzMTA2OCIsImV4cCI6MTczMzUwNTQyMCwiaXNzIjoiSW50ZXJ2aWV3X3F1ZXN0aW9ucyJ9.9Qr76skELBCE3waCHERgUhjLnXk6n6MUIvdRcs7Eh0hffeg7PaD68jTWwluQFKSgpHDHWZY8TPGYFPReo2AlTQ
 
 {
+  "urlKey": "Java Backend",
+  "questionType": "LESSON_QUESTION",
+  "title": "Bu kursda sizlar bilan Java dasturlash tilidan interviewda tushadigan masalachalar ishlashni o'rganamiz",
+  "questionLessonType": "JAVA",
+  "contentType": "HTML_CODE",
+  "superAdminUsername": "@hojiakbar.com"
+}
+
+###
+PUT http://localhost:8080/api/v1/question/update/question/{{id}}
+Content-Type: application/json
+
+{
   "urlKey": "Java ",
   "questionType": "LESSON_QUESTION",
   "title": "Bu kursda sizlar bilan Java dasturlash tilidan interviewda tushadigan masalachalar ishlashni o'rganamiz",
@@ -11,3 +24,16 @@ Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MzMxNTk4MjAsImlkIjoiZTU4Z
   "contentType": "HTML_CODE",
   "superAdminUsername": "@hojiakbar.com"
 }
+
+### pagination
+GET http://localhost:8080/api/v1/question/pagination?page=1&size=3
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MzMxNTk4MjAsImlkIjoiZTU4ZWQ3NjMtOTI4Yy00MTU1LWJlZTktZmRiYWFhZGMxNWYzIiwicm9sZSI6IlJPTEVfU1VQRVJfQURNSU4iLCJ1c2VybmFtZSI6Ijk5ODk5MjQzMTA2OCIsImV4cCI6MTczMzUwNTQyMCwiaXNzIjoiSW50ZXJ2aWV3X3F1ZXN0aW9ucyJ9.9Qr76skELBCE3waCHERgUhjLnXk6n6MUIvdRcs7Eh0hffeg7PaD68jTWwluQFKSgpHDHWZY8TPGYFPReo2AlTQ
+
+### delete question
+DELETE http://localhost:8080/api/v1/question/delete/4
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MzMxNTk4MjAsImlkIjoiZTU4ZWQ3NjMtOTI4Yy00MTU1LWJlZTktZmRiYWFhZGMxNWYzIiwicm9sZSI6IlJPTEVfU1VQRVJfQURNSU4iLCJ1c2VybmFtZSI6Ijk5ODk5MjQzMTA2OCIsImV4cCI6MTczMzUwNTQyMCwiaXNzIjoiSW50ZXJ2aWV3X3F1ZXN0aW9ucyJ9.9Qr76skELBCE3waCHERgUhjLnXk6n6MUIvdRcs7Eh0hffeg7PaD68jTWwluQFKSgpHDHWZY8TPGYFPReo2AlTQ
+
+
+### change status
+PUT http://localhost:8080/api/v1/question/change/status/1
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MzMxNTk4MjAsImlkIjoiZTU4ZWQ3NjMtOTI4Yy00MTU1LWJlZTktZmRiYWFhZGMxNWYzIiwicm9sZSI6IlJPTEVfU1VQRVJfQURNSU4iLCJ1c2VybmFtZSI6Ijk5ODk5MjQzMTA2OCIsImV4cCI6MTczMzUwNTQyMCwiaXNzIjoiSW50ZXJ2aWV3X3F1ZXN0aW9ucyJ9.9Qr76skELBCE3waCHERgUhjLnXk6n6MUIvdRcs7Eh0hffeg7PaD68jTWwluQFKSgpHDHWZY8TPGYFPReo2AlTQ
