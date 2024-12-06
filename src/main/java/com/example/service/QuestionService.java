@@ -2,6 +2,7 @@ package com.example.service;
 
 import com.example.dto.ApiResponse;
 import com.example.dto.question.QuestionCreateDTO;
+import com.example.dto.question.QuestionPaginationDTO;
 import com.example.entity.QuestionEntity;
 import com.example.enums.AppLanguage;
 import com.example.enums.QuestionStatus;
@@ -10,9 +11,15 @@ import com.example.mapper.QuestionMapper;
 import com.example.repository.QuestionRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
@@ -43,6 +50,7 @@ public class QuestionService {
         entity.setContentType(questionCreateDTO.getContentType());
         entity.setSuperAdminUsername(questionCreateDTO.getSuperAdminUsername());
         entity.setQuestionStatus(QuestionStatus.PRIVATE);
+        entity.setVisible(true);
         questionRepository.save(entity);
         QuestionCreateDTO responseDTO = questionMapper.toDTO(entity);
         return ApiResponse.ok(List.of(responseDTO),countColumn());
@@ -76,4 +84,33 @@ public class QuestionService {
         return questionRepository.findById(id).orElseThrow(()->new AppBadException("Question not found"));
     }
 
+    public ApiResponse<PageImpl<QuestionPaginationDTO>> pagination(int page, int size) {
+        Sort sort = Sort.by(Sort.Direction.DESC, "createdDate");
+        PageRequest pageable = PageRequest.of(page, size, sort);
+        Page<QuestionEntity> pageEntity = questionRepository.findAll(pageable);
+        List<QuestionPaginationDTO> dtoList = new LinkedList<>();
+        for (QuestionEntity questionEntity : pageEntity.getContent()) {
+            dtoList.add(questionMapper.toPaginationDTO(questionEntity));
+        }
+        long count = pageEntity.getTotalElements();
+        return ApiResponse.ok(Collections.singletonList(new PageImpl<>(dtoList, pageable, count)),countColumn());
+    }
+
+    public ApiResponse<Boolean> deleteQuestion(Long id) {
+        QuestionEntity entity = getQuestionById(id);
+        entity.setVisible(false);
+        questionRepository.save(entity);
+        return ApiResponse.ok(Collections.singletonList(true),countColumn());
+    }
+
+    public ApiResponse<Boolean> changeStatus(Long id) {
+        QuestionEntity questionById = getQuestionById(id);
+        if (questionById.getQuestionStatus()==QuestionStatus.PRIVATE) {
+            questionById.setQuestionStatus(QuestionStatus.PUBLISH);
+        }else {
+            questionById.setQuestionStatus(QuestionStatus.PRIVATE);
+        }
+        questionRepository.save(questionById);
+        return ApiResponse.ok(Collections.singletonList(true),countColumn());
+    }
 }

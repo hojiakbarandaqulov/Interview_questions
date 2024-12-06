@@ -1,7 +1,10 @@
 package com.example.dto;
 
+import com.example.dto.question.QuestionPaginationDTO;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.security.core.parameters.P;
 
 import java.util.List;
 
@@ -67,6 +70,13 @@ public class ApiResponse<T> {
         this.total = total;
     }
 
+    public ApiResponse(int i, boolean b, Boolean b1) {
+        this.code = i;
+        this.isError = b;
+        this.data = null;
+        this.total = null;
+    }
+
     public static <T> ApiResponse<T> ok() {
         return new ApiResponse<T>(200, false);
     }
@@ -74,10 +84,9 @@ public class ApiResponse<T> {
     public static <T> ApiResponse<T> ok(Boolean isError, List<T> data) {
         return new ApiResponse<T>(200, false, data);
     }
-/*
-    public static <T> ApiResponse<T> ok(List<T> data, Integer total) {
+    public static <T> ApiResponse<T> ok(List<T> data) {
         return new ApiResponse<T>(200, false, data);
-    }*/
+    }
 
     public static <T> ApiResponse<T> bad(String message) {
         return new ApiResponse<T>(message, 400, true);
@@ -94,4 +103,5 @@ public class ApiResponse<T> {
     public static <T> ApiResponse<T> ok(List<T> data, Integer total) {
         return new ApiResponse<T>(200, false, data);
     }
+
 }

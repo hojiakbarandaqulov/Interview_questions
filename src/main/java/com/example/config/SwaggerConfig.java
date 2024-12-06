@@ -3,6 +3,7 @@ package com.example.config;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.info.License;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
@@ -23,9 +24,6 @@ import java.util.List;
         in = SecuritySchemeIn.HEADER
 
 )
-@OpenAPIDefinition
-@Configuration
-@ConditionalOnProperty(value = "springfox.documentation.enabled", havingValue = "true", matchIfMissing = true)
 public class SwaggerConfig {
     @Value("${server.host}")
     private String url;
@@ -41,7 +39,6 @@ public class SwaggerConfig {
         contact.setName("BezKoder");
         contact.setUrl("https://www.bezkoder.com");
 
-
         Info info = new Info()
                 .title("Scolaro.uz Management API")
                 .version("1.0")
@@ -49,7 +46,7 @@ public class SwaggerConfig {
                 .description("This API exposes endpoints to manage tutorials.")
                 .termsOfService("https://www.bezkoder.com/terms")
                 .license(null);
-
         return new OpenAPI().info(info).servers(List.of(devServer));
     }
 }
+

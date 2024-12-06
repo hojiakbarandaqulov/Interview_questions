@@ -39,7 +39,10 @@ public class QuestionEntity {
     @Column(name = "content_type")
     private String contentType;
 
-    @Column(name = "super_admin_uername")
+    @Column(name = "super_admin_username")
     private String superAdminUsername;
+
+    @Column(name = "visible")
+    private Boolean visible;
 
 }
