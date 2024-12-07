@@ -8,6 +8,7 @@ import com.example.entity.ProfileEntity;
 import com.example.enums.AppLanguage;
 import com.example.service.ProfileService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -31,7 +32,6 @@ public class ProfileController {
         this.profileService = profileService;
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
     @PutMapping("/update/{id}")
     public ResponseEntity<ApiResponse<?>> updateProfile(@Valid @RequestBody ProfileUpdateDTO profile,
                                                        @PathVariable String id,
@@ -55,6 +55,15 @@ public class ProfileController {
                                                            @RequestParam(defaultValue = "uz") AppLanguage language) {
         log.info("upload attach  = {}", file.getOriginalFilename());
         ApiResponse<?> response = profileService.saveProfilePhoto(file,id);
+        return ResponseEntity.ok(response);
+    }
+
+    @Operation(summary = "update api", description = "Api list update profile")
+    @SecurityRequirement(name = "bearerAuth")
+    @PreAuthorize("hasRole('ROLE_SUPER_ADMIN')")
+    @PutMapping("/update/profile_role/{id}")
+    public ResponseEntity<ApiResponse<?>> updateProfileRole(@PathVariable String id) {
+        ApiResponse<?> response = profileService.updateProfile(id);
         return ResponseEntity.ok(response);
     }
 }

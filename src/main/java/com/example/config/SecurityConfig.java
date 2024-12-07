@@ -45,9 +45,9 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         // authorization
+
         http.authorizeHttpRequests(authorizationManagerRequestMatcherRegistry -> {
             authorizationManagerRequestMatcherRegistry
-                    .requestMatchers("/v2/api-docs").permitAll()
                     .requestMatchers("/v3/api-docs").permitAll()
                     .requestMatchers("/v3/api-docs/**").permitAll()
                     .requestMatchers("/swagger-resources").permitAll()
@@ -58,7 +58,7 @@ public class SecurityConfig {
                     .requestMatchers("/webjars/**").permitAll()
                     .requestMatchers("/swagger-ui.html").permitAll()
                     .requestMatchers("/api/v1/authorization/**").permitAll()
-//                    .requestMatchers("/api/v1/authorization/login").permitAll()
+                    .requestMatchers("/api/v1/authorization/login").permitAll()
                     .requestMatchers("/api/v1/profile/**").permitAll()
                     .requestMatchers("/api/v1/attach/**").permitAll()
                     .anyRequest()

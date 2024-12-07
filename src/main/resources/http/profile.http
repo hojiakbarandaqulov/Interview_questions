@@ -29,6 +29,6 @@ Content-Disposition: form-data; name="file"; filename="file.png"
 
 < D:\video\file.png
 
-###
-POST http://localhost:8080/api/v1/profile/create/photo/{e58ed763-928c-4155-bee9-fdbaaadc15f3}?
-    file={{$random.alphanumeric(8)}}
+### profile role update
+PUT http://localhost:8080/api/v1/profile/update/profile_role/7a36619f-2147-4df9-98f1-2eff19cef7bf
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MzM1NzY2NTcsImlkIjoiZTU4ZWQ3NjMtOTI4Yy00MTU1LWJlZTktZmRiYWFhZGMxNWYzIiwicm9sZSI6IlJPTEVfU1VQRVJfQURNSU4iLCJ1c2VybmFtZSI6Ijk5ODk5MjQzMTA2OCIsImV4cCI6MTczMzkyMjI1NywiaXNzIjoiSW50ZXJ2aWV3X3F1ZXN0aW9ucyJ9.uS6xgCRoDpoaEW7QcUsjPfyEt5MTtVg2E1AcQHD-EJ73fIoJLDi15aOm9fjv1vjOcQSzFi1ZLLSCl0t6nqQk4w

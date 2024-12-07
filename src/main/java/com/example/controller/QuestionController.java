@@ -5,6 +5,8 @@ import com.example.dto.question.QuestionCreateDTO;
 import com.example.dto.question.QuestionPaginationDTO;
 import com.example.enums.AppLanguage;
 import com.example.service.QuestionService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/question")
+@SecurityRequirement(name = "bearerAuth")
+@Tag(name = "question Controller", description = "Api list for profile, profile and other ....")
 public class QuestionController {
     private final QuestionService questionService;
 

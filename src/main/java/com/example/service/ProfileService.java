@@ -7,6 +7,7 @@ import com.example.dto.profile.ProfileUpdatePasswordDTO;
 import com.example.entity.AttachEntity;
 import com.example.entity.ProfileEntity;
 import com.example.enums.AppLanguage;
+import com.example.enums.ProfileRole;
 import com.example.exp.AppBadException;
 import com.example.repository.ProfileRepository;
 import com.example.utils.MD5Util;
@@ -78,5 +79,12 @@ public class ProfileService {
             throw new AppBadException("no profile table column");
         }
         return i;
+    }
+
+    public ApiResponse<?> updateProfile(String id) {
+        ProfileEntity profileEntity = get(id);
+        profileEntity.setRole(ProfileRole.ROLE_ADMIN);
+        profileRepository.save(profileEntity);
+        return ApiResponse.ok(List.of("Profile role set Admin"),countColumn());
     }
 }

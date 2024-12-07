@@ -10,7 +10,6 @@ Content-Type: application/json
   "password": "1234"
 }
 
-
 ### Login
 POST http://localhost:8080/api/v1/authorization/login
 Content-Type: application/json
@@ -21,13 +20,12 @@ Content-Type: application/json
 }
 
 ### verification
-GET http://localhost:8080/api/v1/authorization/verification/a8638013-43b2-4973-b32a-ef5711aca912
+GET http://localhost:8080/api/v1/authorization/verification/7a36619f-2147-4df9-98f1-2eff19cef7bf
 #Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3Mjk5NTA3NDgsImlkIjoiZTU4ZWQ3NjMtOTI4Yy00MTU1LWJlZTktZmRiYWFhZGMxNWYzIiwicm9sZSI6IlJPTEVfQURNSU4iLCJ1c2VybmFtZSI6Ijk5ODk5MjQzMTA2OCIsImV4cCI6MTczMDI5NjM0OCwiaXNzIjoiSW50ZXJ2aWV3X3F1ZXN0aW9ucyJ9.dU6-Sh_pdlVnilWescble2vZKhCCT2wK6haSOFBH44Rw1gGhmk4A8-Qnys0EpIDanSMrwhUm2ZedzYwCo6H8RQ
 
 ### resend
 GET http://localhost:8080/api/v1/authorization/registration/resend/hojiakbarandaqulov5@gmail.com
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MzAzMDM4MjQsImlkIjoiZTU4ZWQ3NjMtOTI4Yy00MTU1LWJlZTktZmRiYWFhZGMxNWYzIiwicm9sZSI6IlJPTEVfQURNSU4iLCJ1c2VybmFtZSI6Ijk5ODk5MjQzMTA2OCIsImV4cCI6MTczMDY0OTQyNCwiaXNzIjoiSW50ZXJ2aWV3X3F1ZXN0aW9ucyJ9.E0HfmpxSoLzVmSkuE-sAhtIas8bRdVVlowx0cwqL-g-YctD9pLzHOcDI7oJqnLY6IF9zKgGEG33JZlZxDWt29w
-
 
 ### Login
 POST http://95.130.227.202:9091/api/v1/authorization/login
