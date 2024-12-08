@@ -7,14 +7,12 @@ import com.example.dto.auth.SmsDTO;
 import com.example.enums.AppLanguage;
 import com.example.service.AuthorizationService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -24,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @Slf4j
 @RequestMapping("/api/v1/authorization")
+@Tag(name = "Auth Controller", description = "Api list for authorization, registration and other ....")
 public class AuthorizationController {
 
     private final AuthorizationService authorizationService;
@@ -41,7 +40,6 @@ public class AuthorizationController {
     }
 
     @PostMapping("/login")
-    @Operation(summary = "Login", description = "Api for profile login")
     public ResponseEntity<ApiResponse<?>> login(@Valid @RequestBody LoginDTO loginDTO,
                                                 @RequestHeader(value = "Accept-Language", defaultValue = "uz") AppLanguage language) {
         ApiResponse<?> response = authorizationService.login(loginDTO, language);
@@ -61,8 +59,7 @@ public class AuthorizationController {
         ApiResponse<String> response = authorizationService.authorizationVerification(userId, language);
         return ResponseEntity.ok().body(response);
     }
-    @Operation(summary = "Resend user", description = "Resend user")
-    @SecurityRequirement(name = "bearerAuth")
+
     @GetMapping("/registration/resend/{email}")
     public ResponseEntity<ApiResponse<?>> registrationResend(@PathVariable("email") String email,
                                                              @RequestHeader(value = "Accept-Language", defaultValue = "uz") AppLanguage language) {

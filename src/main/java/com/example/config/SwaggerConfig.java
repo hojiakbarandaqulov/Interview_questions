@@ -15,7 +15,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
-@Configuration
 @SecurityScheme(
         name = "bearerAuth",
         description = "JWT auth description",
@@ -23,6 +22,7 @@ import java.util.List;
         type = SecuritySchemeType.HTTP,
         bearerFormat = "JWT",
         in = SecuritySchemeIn.HEADER
+
 )
 public class SwaggerConfig {
     @Value("${server.host}")
@@ -35,12 +35,12 @@ public class SwaggerConfig {
         devServer.setDescription("Server URL");
 
         Contact contact = new Contact();
-        contact.setEmail("interview@gmail.com");
+        contact.setEmail("scolaro.uz");
         contact.setName("BezKoder");
         contact.setUrl("https://www.bezkoder.com");
 
         Info info = new Info()
-                .title("Interview.uz Management API")
+                .title("Scolaro.uz Management API")
                 .version("1.0")
                 .contact(contact)
                 .description("This API exposes endpoints to manage tutorials.")
