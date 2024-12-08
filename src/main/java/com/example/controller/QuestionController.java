@@ -5,12 +5,14 @@ import com.example.dto.question.QuestionCreateDTO;
 import com.example.dto.question.QuestionPaginationDTO;
 import com.example.enums.AppLanguage;
 import com.example.service.QuestionService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
+@SecurityRequirement(name = "Bearer Authentication")
 @RestController
 @RequestMapping("/api/v1/question")
 public class QuestionController {

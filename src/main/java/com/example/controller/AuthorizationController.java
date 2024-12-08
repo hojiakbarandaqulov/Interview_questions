@@ -7,6 +7,7 @@ import com.example.dto.auth.SmsDTO;
 import com.example.enums.AppLanguage;
 import com.example.service.AuthorizationService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -53,13 +54,15 @@ public class AuthorizationController {
         return ResponseEntity.ok().body(response);
     }*/
 
+
     @GetMapping("/verification/{userId}")
     public ResponseEntity<ApiResponse<String>> verification(@PathVariable String userId,
                                                             @RequestParam(defaultValue = "uz") AppLanguage language) {
         ApiResponse<String> response = authorizationService.authorizationVerification(userId, language);
         return ResponseEntity.ok().body(response);
     }
-
+    @Operation(summary = "Delete user", description = "Delete user")
+    @SecurityRequirement(name = "Bearer Authentication")
     @GetMapping("/registration/resend/{email}")
     public ResponseEntity<ApiResponse<?>> registrationResend(@PathVariable("email") String email,
                                                              @RequestHeader(value = "Accept-Language", defaultValue = "uz") AppLanguage language) {

@@ -8,6 +8,7 @@ import com.example.entity.ProfileEntity;
 import com.example.enums.AppLanguage;
 import com.example.service.ProfileService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -60,7 +61,8 @@ public class ProfileController {
 
     @PreAuthorize("hasRole('ROLE_SUPER_ADMIN')")
     @PutMapping("/update/profile_role/{id}")
-    @Operation(summary = "upload api", description = "Api list attach create")
+    @Operation(summary = "Delete user", description = "Delete user")
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<ApiResponse<?>> updateProfileRole(@PathVariable String id) {
         ApiResponse<?> response = profileService.updateProfile(id);
         return ResponseEntity.ok(response);
