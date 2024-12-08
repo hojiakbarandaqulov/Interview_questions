@@ -587,3 +587,9 @@
 08 Dec 2024 - 09:45:35.329 [http-nio-9090-exec-2] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@6331a582 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
 08 Dec 2024 - 09:45:35.379 [http-nio-9090-exec-2] WARN  com.zaxxer.hikari.pool.PoolBase - HikariPool-1 - Failed to validate connection org.postgresql.jdbc.PgConnection@8527822 (This connection has been closed.). Possibly consider using a shorter maxLifetime value.
 08 Dec 2024 - 09:58:51.285 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=8m48s716ms482µs100ns).
+08 Dec 2024 - 10:40:18.181 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4m56s243ms816µs200ns).
+08 Dec 2024 - 12:11:40.225 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h18m51s836ms427µs800ns).
+08 Dec 2024 - 16:40:07.431 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4h23m57s128ms665µs900ns).
+08 Dec 2024 - 16:48:13.888 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+08 Dec 2024 - 16:48:13.904 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+08 Dec 2024 - 16:48:14.628 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
