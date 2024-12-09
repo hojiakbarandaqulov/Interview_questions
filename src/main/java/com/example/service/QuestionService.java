@@ -3,7 +3,8 @@ package com.example.service;
 import com.example.dto.ApiResponse;
 import com.example.dto.question.QuestionCreateDTO;
 import com.example.dto.question.QuestionPaginationDTO;
-import com.example.entity.QuestionEntity;
+import com.example.entity.QuestionCreateEntity;
+import com.example.entity.QuestionCreateEntity;
 import com.example.enums.AppLanguage;
 import com.example.enums.QuestionStatus;
 import com.example.exp.AppBadException;
@@ -41,7 +42,7 @@ public class QuestionService {
             log.error("Question url key is empty");
             resourceBundleMessageSource.getMessage("where.is.the.question", null, new Locale(language.name()));
         }
-        QuestionEntity entity = new QuestionEntity();
+        QuestionCreateEntity entity = new QuestionCreateEntity();
         entity.setUrlKey(questionCreateDTO.getUrlKey());
         entity.setTitle(questionCreateDTO.getTitle());
         entity.setCreatedDate(LocalDateTime.now());
@@ -65,7 +66,7 @@ public class QuestionService {
     }
 
     public ApiResponse<?> updateQuestion(QuestionCreateDTO questionCreateDTO,Long id, AppLanguage language) {
-        QuestionEntity entity = getQuestionById(id);
+        QuestionCreateEntity entity = getQuestionById(id);
         entity.setUrlKey(questionCreateDTO.getUrlKey());
         entity.setTitle(questionCreateDTO.getTitle());
         entity.setCreatedDate(LocalDateTime.now());
@@ -79,7 +80,7 @@ public class QuestionService {
         return ApiResponse.ok(List.of(responseDTO),countColumn());
     }
 
-    public QuestionEntity getQuestionById(Long id) {
+    public QuestionCreateEntity getQuestionById(Long id) {
         log.info("get question by id: {}", id);
         return questionRepository.findById(id).orElseThrow(()->new AppBadException("Question not found"));
     }
@@ -87,9 +88,9 @@ public class QuestionService {
     public ApiResponse<PageImpl<QuestionPaginationDTO>> pagination(int page, int size) {
         Sort sort = Sort.by(Sort.Direction.DESC, "createdDate");
         PageRequest pageable = PageRequest.of(page, size, sort);
-        Page<QuestionEntity> pageEntity = questionRepository.findAll(pageable);
+        Page<QuestionCreateEntity> pageEntity = questionRepository.findAll(pageable);
         List<QuestionPaginationDTO> dtoList = new LinkedList<>();
-        for (QuestionEntity questionEntity : pageEntity.getContent()) {
+        for (QuestionCreateEntity questionEntity : pageEntity.getContent()) {
             dtoList.add(questionMapper.toPaginationDTO(questionEntity));
         }
         long count = pageEntity.getTotalElements();
@@ -97,14 +98,14 @@ public class QuestionService {
     }
 
     public ApiResponse<Boolean> deleteQuestion(Long id) {
-        QuestionEntity entity = getQuestionById(id);
+        QuestionCreateEntity entity = getQuestionById(id);
         entity.setVisible(false);
         questionRepository.save(entity);
         return ApiResponse.ok(List.of(true),countColumn());
     }
 
     public ApiResponse<Boolean> changeStatus(Long id) {
-        QuestionEntity questionById = getQuestionById(id);
+        QuestionCreateEntity questionById = getQuestionById(id);
         if (questionById.getQuestionStatus()==QuestionStatus.PRIVATE) {
             questionById.setQuestionStatus(QuestionStatus.PUBLISH);
         }else {

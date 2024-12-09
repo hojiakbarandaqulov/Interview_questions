@@ -201,8 +201,8 @@ public class AuthorizationService {
         emailHistoryService.create(email, text); // create history
     }
 
-    public int countColumn() {
-        int i = profileRepository.countColumns();
+    public Integer countColumn() {
+        Integer i = profileRepository.countColumns();
         if (i==0){
             throw new AppBadException("no profile table column");
         }

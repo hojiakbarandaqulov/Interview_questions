@@ -59,10 +59,9 @@ public class ProfileController {
         return ResponseEntity.ok(response);
     }
 
-    @PreAuthorize("hasRole('ROLE_SUPER_ADMIN')")
-    @PutMapping("/update/profile_role/{id}")
-    @Operation(summary = "Delete user", description = "Delete user")
-    @SecurityRequirement(name = "Bearer Authentication")
+    @SecurityRequirement(name = "bearerAuth")
+    @Tag(name = "Profile Controller", description = "The ProfileController API")
+    @PutMapping("//profile_role/{id}")
     public ResponseEntity<ApiResponse<?>> updateProfileRole(@PathVariable String id) {
         ApiResponse<?> response = profileService.updateProfile(id);
         return ResponseEntity.ok(response);

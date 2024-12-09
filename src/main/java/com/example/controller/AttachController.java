@@ -27,7 +27,7 @@ public class AttachController {
 
     private AttachService attachService;
 
-    @PostMapping("/upload")
+    @PostMapping(value = "/upload",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(summary = "upload api", description = "Api list attach create")
     public ResponseEntity<AttachDTO> create(@RequestParam("file") MultipartFile file) {
         log.info("upload attach  = {}", file.getOriginalFilename());

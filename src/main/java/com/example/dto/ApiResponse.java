@@ -58,6 +58,7 @@ public class ApiResponse<T> {
         this.isError = isError;
         this.data = data;
     }
+
     public ApiResponse(Integer code, Boolean isError, List<T> data, int total) {
         this.code = code;
         this.isError = isError;
@@ -65,16 +66,9 @@ public class ApiResponse<T> {
         this.total = total;
     }
 
-    public ApiResponse(List<T> data, int total) {
+    public ApiResponse(List<T> data, Integer total) {
         this.data = data;
         this.total = total;
-    }
-
-    public ApiResponse(int i, boolean b, Boolean b1) {
-        this.code = i;
-        this.isError = b;
-        this.data = null;
-        this.total = null;
     }
 
     public static <T> ApiResponse<T> ok() {
@@ -84,6 +78,7 @@ public class ApiResponse<T> {
     public static <T> ApiResponse<T> ok(Boolean isError, List<T> data) {
         return new ApiResponse<T>(200, false, data);
     }
+
     public static <T> ApiResponse<T> ok(List<T> data) {
         return new ApiResponse<T>(200, false, data);
     }
@@ -101,7 +96,7 @@ public class ApiResponse<T> {
     }
 
     public static <T> ApiResponse<T> ok(List<T> data, Integer total) {
-        return new ApiResponse<T>(200, false, data);
+        return new ApiResponse<T>(200, false, data,total);
     }
 
 }

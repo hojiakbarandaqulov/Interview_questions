@@ -61,8 +61,9 @@ public class AuthorizationController {
         ApiResponse<String> response = authorizationService.authorizationVerification(userId, language);
         return ResponseEntity.ok().body(response);
     }
-    @Operation(summary = "Delete user", description = "Delete user")
-    @SecurityRequirement(name = "Bearer Authentication")
+
+    @SecurityRequirement(name = "bearerAuth")
+    @Tag(name = "Question", description = "The QuestionController API")
     @GetMapping("/registration/resend/{email}")
     public ResponseEntity<ApiResponse<?>> registrationResend(@PathVariable("email") String email,
                                                              @RequestHeader(value = "Accept-Language", defaultValue = "uz") AppLanguage language) {

@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
-@Table(name = "question")
-public class QuestionEntity {
+@Table(name = "question_create")
+public class QuestionCreateEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -44,5 +44,8 @@ public class QuestionEntity {
 
     @Column(name = "visible")
     private Boolean visible;
+
+    @Column(name = "content")
+    private String content;
 
 }
