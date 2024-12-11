@@ -22,7 +22,6 @@ import java.util.List;
         type = SecuritySchemeType.HTTP,
         bearerFormat = "JWT",
         in = SecuritySchemeIn.HEADER
-
 )
 public class SwaggerConfig {
     @Value("${server.host}")

@@ -64,10 +64,10 @@ public class SecurityConfig {
                     .anyRequest()
                     .authenticated();
         });
-        http.csrf(AbstractHttpConfigurer::disable); // csrf o'chirilgan
-        http.csrf(AbstractHttpConfigurer::disable); // csrf o'chirilgan
+        http.csrf(AbstractHttpConfigurer::disable);
+        http.csrf(AbstractHttpConfigurer::disable);
         http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
-        http.cors(httpSecurityCorsConfigurer -> { // cors konfiguratsiya qilingan
+        http.cors(httpSecurityCorsConfigurer -> { // cors konfiguratsiya
             CorsConfiguration configuration = new CorsConfiguration();
             configuration.setAllowedOriginPatterns(Arrays.asList("*"));
             configuration.setAllowedMethods(Arrays.asList("*"));

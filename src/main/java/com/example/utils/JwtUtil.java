@@ -19,7 +19,6 @@ public static String encode(String profileId, String username, ProfileRole role)
         SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey.getBytes(), sa.getJcaName());
 
         jwtBuilder.signWith(secretKeySpec);
-
         jwtBuilder.claim("id", profileId);
         jwtBuilder.claim("role", role);
         jwtBuilder.claim("username", username);

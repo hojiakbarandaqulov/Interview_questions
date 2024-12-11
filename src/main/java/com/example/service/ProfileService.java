@@ -9,6 +9,7 @@ import com.example.entity.ProfileEntity;
 import com.example.enums.AppLanguage;
 import com.example.enums.ProfileRole;
 import com.example.exp.AppBadException;
+import com.example.mapper.ProfileMapper;
 import com.example.repository.ProfileRepository;
 import com.example.utils.MD5Util;
 import lombok.extern.slf4j.Slf4j;
@@ -25,11 +26,13 @@ public class ProfileService {
     private final AttachService attachService;
     private final ProfileRepository profileRepository;
     private final ResourceBundleMessageSource resourceBundleMessageSource;
+    private final ProfileMapper profileMapper;
 
-    public ProfileService(AttachService attachService, ProfileRepository profileRepository, ResourceBundleMessageSource resourceBundleMessageSource) {
+    public ProfileService(AttachService attachService, ProfileRepository profileRepository, ResourceBundleMessageSource resourceBundleMessageSource, ProfileMapper profileMapper) {
         this.attachService = attachService;
         this.profileRepository = profileRepository;
         this.resourceBundleMessageSource = resourceBundleMessageSource;
+        this.profileMapper = profileMapper;
     }
 
     public ApiResponse<String> update(ProfileUpdateDTO profile, String id, AppLanguage language) {

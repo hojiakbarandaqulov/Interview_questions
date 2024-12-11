@@ -166,7 +166,8 @@ public class AuthorizationService {
 
     public void sendRegistrationEmail(String profileId, String email) {
         // send email
-        String url = String.format("http://5.182.26.40:9090/api/v1/authorization/verification/" + profileId);
+//        String url = String.format("http://5.182.26.40:9090/api/v1/authorization/verification/" + profileId);
+        String url = String.format("http://localhost:8080/api/v1/authorization/verification/" + profileId);
         String formatText = "<style>\n" +
                 "    a:link, a:visited {\n" +
                 "        background-color: #f44336;\n" +
@@ -195,7 +196,8 @@ public class AuthorizationService {
 
     public void sendRegistrationRandomCodeEmail(String profileId, String email) {
         // send email
-        String url = "http://5.182.26.40:9090/api/v1/authorization/verification/" + profileId;
+//        String url = "http://5.182.26.40:9090/api/v1/authorization/verification/" + profileId;
+        String url = "http://localhost:8080/api/v1/authorization/verification/" + profileId;
         String text = String.format(RandomUtil.getRandomSmsCode(), url);
         mailSenderService.send(email, "Complete registration", text);
         emailHistoryService.create(email, text); // create history
