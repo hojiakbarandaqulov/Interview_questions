@@ -53,8 +53,6 @@ public class AuthorizationController {
         ApiResponse<?> response = authorizationService.authorizationVerification(smsDTO,language);
         return ResponseEntity.ok().body(response);
     }*/
-
-
     @GetMapping("/verification/{userId}")
     public ResponseEntity<ApiResponse<String>> verification(@PathVariable String userId,
                                                             @RequestParam(defaultValue = "uz") AppLanguage language) {

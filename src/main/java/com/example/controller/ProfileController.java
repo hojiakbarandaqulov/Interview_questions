@@ -13,6 +13,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Profile;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -50,10 +51,9 @@ public class ProfileController {
         return ResponseEntity.ok().body(profileService.updatePassword(profile,id,language));
     }
 
-    @PostMapping("/create/photo/{id}")
+    @PostMapping(value = "/create/photo/{id}",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @Operation(summary = "upload api", description = "Api list attach create")
-    public ResponseEntity<ApiResponse<?>> saveProfilePhoto(@RequestParam("file") MultipartFile file,  @PathVariable String id,
-                                                           @RequestParam(defaultValue = "uz") AppLanguage language) {
+    public ResponseEntity<ApiResponse<?>> saveProfilePhoto(@RequestParam("file") MultipartFile file,  @PathVariable String id) {
         log.info("upload attach  = {}", file.getOriginalFilename());
         ApiResponse<?> response = profileService.saveProfilePhoto(file,id);
         return ResponseEntity.ok(response);
