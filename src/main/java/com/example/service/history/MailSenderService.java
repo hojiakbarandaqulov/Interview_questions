@@ -11,10 +11,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class MailSenderService {
     private final JavaMailSender javaMailSender;
-    @Autowired
     private EmailHistoryService emailHistoryService;
     @Value("${spring.mail.username}")
-    String fromMailAddress;
+    private String fromMailAddress;
 
     public MailSenderService(JavaMailSender javaMailSender) {
         this.javaMailSender = javaMailSender;

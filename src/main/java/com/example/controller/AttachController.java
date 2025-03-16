@@ -39,7 +39,6 @@ public class AttachController {
     public byte[] open_general(@PathVariable("fileName") String fileName) {
         return attachService.open_general(fileName);
     }
-
 /*   @GetMapping(value = "/open/{fileName}", produces = MediaType.IMAGE_PNG_VALUE)
     public ResponseEntity<Resource> open(@PathVariable("fileName") String fileName) throws Exception {
         return attachService.open(fileName);

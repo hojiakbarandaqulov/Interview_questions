@@ -12,5 +12,4 @@ public interface QuestionMapper {
     QuestionCreateEntity toEntity(QuestionCreateDTO dto);
     QuestionPaginationDTO toPaginationDTO(QuestionCreateEntity entity);
 
-
 }

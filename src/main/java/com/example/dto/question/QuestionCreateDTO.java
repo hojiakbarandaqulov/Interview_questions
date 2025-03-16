@@ -30,5 +30,4 @@ public class QuestionCreateDTO {
     @NotBlank(message = "content required")
     private  String  content;
 
-
 }

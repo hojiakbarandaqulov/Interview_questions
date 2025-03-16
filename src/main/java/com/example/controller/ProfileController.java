@@ -42,7 +42,6 @@ public class ProfileController {
         return ResponseEntity.ok().body(profileService.update(profile,id,language));
     }
 
-
     @PutMapping("/update/password/{id}")
     public ResponseEntity<ApiResponse<?>> updateProfilePassword(@Valid @RequestBody ProfileUpdatePasswordDTO profile,
                                                 @PathVariable String id,
@@ -61,7 +60,7 @@ public class ProfileController {
 
     @SecurityRequirement(name = "bearerAuth")
     @Tag(name = "Profile Controller", description = "The ProfileController API")
-    @PutMapping("//profile_role/{id}")
+    @PutMapping("/profile_role/{id}")
     public ResponseEntity<ApiResponse<?>> updateProfileRole(@PathVariable String id) {
         ApiResponse<?> response = profileService.updateProfile(id);
         return ResponseEntity.ok(response);

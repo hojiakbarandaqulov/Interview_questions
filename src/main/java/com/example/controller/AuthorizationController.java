@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/authorization")
 @Tag(name = "Auth Controller", description = "Api list for authorization, registration and other ....")
 public class AuthorizationController {
+
     private final AuthorizationService authorizationService;
 
     public AuthorizationController(AuthorizationService authorizationService) {
@@ -52,6 +53,7 @@ public class AuthorizationController {
         ApiResponse<?> response = authorizationService.authorizationVerification(smsDTO,language);
         return ResponseEntity.ok().body(response);
     }*/
+
     @GetMapping("/verification/{userId}")
     public ResponseEntity<ApiResponse<String>> verification(@PathVariable String userId,
                                                             @RequestParam(defaultValue = "uz") AppLanguage language) {

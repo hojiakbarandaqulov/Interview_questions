@@ -1,3 +1,32 @@
-08 Jan 2025 - 11:10:58.706 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=12h16m2s637ms228µs300ns).
-08 Jan 2025 - 11:23:20.569 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3m51s657ms213µs500ns).
-08 Jan 2025 - 11:50:46.632 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=23m56s7ms745µs500ns).
+13 Mar 2025 - 14:02:06.433 [main] INFO  c.e.InterviewQuestionsApplication - Starting InterviewQuestionsApplication using Java 17.0.12 with PID 13820 (D:\JavaProject\Interview_questions\target\classes started by Xojiakbar in D:\JavaProject\Interview_questions)
+13 Mar 2025 - 14:02:06.452 [main] INFO  c.e.InterviewQuestionsApplication - The following 1 profile is active: "dev"
+13 Mar 2025 - 14:02:07.848 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+13 Mar 2025 - 14:02:07.969 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 111 ms. Found 5 JPA repository interfaces.
+13 Mar 2025 - 14:02:08.781 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+13 Mar 2025 - 14:02:08.809 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+13 Mar 2025 - 14:02:08.809 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.31]
+13 Mar 2025 - 14:02:08.887 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+13 Mar 2025 - 14:02:08.888 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2385 ms
+13 Mar 2025 - 14:02:09.039 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+13 Mar 2025 - 14:02:09.147 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.3.Final
+13 Mar 2025 - 14:02:09.196 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+13 Mar 2025 - 14:02:09.608 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+13 Mar 2025 - 14:02:09.648 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+13 Mar 2025 - 14:02:09.821 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5950054d
+13 Mar 2025 - 14:02:09.823 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+13 Mar 2025 - 14:02:09.891 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+13 Mar 2025 - 14:02:11.364 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+13 Mar 2025 - 14:02:11.666 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+13 Mar 2025 - 14:02:12.024 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+13 Mar 2025 - 14:02:13.093 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+13 Mar 2025 - 14:02:13.125 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+13 Mar 2025 - 14:02:13.125 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+13 Mar 2025 - 14:02:14.318 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+13 Mar 2025 - 14:02:14.334 [main] INFO  c.e.InterviewQuestionsApplication - Started InterviewQuestionsApplication in 8.491 seconds (process running for 9.17)
+13 Mar 2025 - 14:02:14.531 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:postgresql://localhost:5432/Interview_questions (PostgreSQL 14.13)
+13 Mar 2025 - 14:02:14.635 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 3 migrations (execution time 00:00.070s)
+13 Mar 2025 - 14:02:14.657 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 2
+13 Mar 2025 - 14:02:14.666 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+13 Mar 2025 - 14:03:43.146 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+13 Mar 2025 - 14:03:43.149 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+13 Mar 2025 - 14:03:43.153 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
