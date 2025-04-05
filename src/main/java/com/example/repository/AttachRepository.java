@@ -12,6 +12,6 @@ import java.util.Optional;
 public interface AttachRepository extends JpaRepository<AttachEntity, String> {
 
 
-    @Query("from  AttachEntity where originalName=:orginalName order by createdDate desc limit 1")
-    Optional<AttachEntity> findByOrginalName(@Param("orginalName") String orginalName);
+    @Query("from  AttachEntity where originalName=:originalName order by createdDate desc limit 1")
+    Optional<AttachEntity> findByOriginalName(@Param("originalName") String originalName);
 }

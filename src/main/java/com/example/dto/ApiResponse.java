@@ -96,7 +96,6 @@ public class ApiResponse<T> {
     }
 
     public static <T> ApiResponse<T> ok(List<T> data, Integer total) {
-        return new ApiResponse<T>(200, false, data,total);
+        return new ApiResponse<T>(200, false, data, total);
     }
-
 }

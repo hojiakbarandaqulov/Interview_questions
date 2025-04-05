@@ -13,8 +13,8 @@ public class RegistrationDTO {
     @NotBlank(message = "surname required")
     private String surname;
 
-    @NotBlank(message = "phoneNumber required")
-    private String phoneNumber;
+  /*  @NotBlank(message = "phoneNumber required")
+    private String phoneNumber;*/
 
     @NotBlank(message = "email required")
     private String email;

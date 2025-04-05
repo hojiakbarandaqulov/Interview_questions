@@ -1,13 +1,13 @@
 ### Registration
-POST http://localhost:8080/api/v1/authorization/registration?language=uz
+POST http://localhost:8080/api/v1/authorization/registration?language=ru
 Content-Type: application/json
 
 {
   "name": "Vali",
   "surname": "Valiyev",
   "phoneNumber": "+998995092376",
-  "email": "oyjamolgaybullaeva@gmail.com",
-  "password": "1234"
+  "email": "hojiakbarandaqulov@gmail.com",
+  "password": "123456"
 }
 
 

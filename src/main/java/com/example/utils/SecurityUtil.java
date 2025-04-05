@@ -30,11 +30,4 @@ public class SecurityUtil {
         CustomUserDetail user = (CustomUserDetail) authentication.getPrincipal();
         return user.getProfile().getId();
     }
-
-    public static ProfileEntity getProfile() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        CustomUserDetail user = (CustomUserDetail) authentication.getPrincipal();
-        return user.getProfile();
-    }
-
 }

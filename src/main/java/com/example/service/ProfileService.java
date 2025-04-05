@@ -70,7 +70,7 @@ public class ProfileService {
     }
 
     public ApiResponse<?> saveProfilePhoto(MultipartFile file, String id) {
-        AttachEntity attachEntity = attachService.getOrginalName(file.getOriginalFilename());
+        AttachEntity attachEntity = attachService.getOriginalName(file.getOriginalFilename());
         ProfileEntity profileEntity = get(id);
         profileEntity.setPhotoId(attachEntity.getId());
         profileRepository.save(profileEntity);

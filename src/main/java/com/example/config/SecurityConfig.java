@@ -58,8 +58,8 @@ public class SecurityConfig {
                     .requestMatchers("/webjars/**").permitAll()
                     .requestMatchers("/swagger-ui.html").permitAll()
                     .requestMatchers("/api/v1/authorization/**").permitAll()
-//                    .requestMatchers("/api/v1/authorization/login").permitAll()
-                    .requestMatchers("/api/v1/profile/**").permitAll()
+                    .requestMatchers("/api/v1/authorization/login").permitAll()
+                    .requestMatchers("/api/v1/profile/create/").permitAll()
                     .requestMatchers("/api/v1/attach/**").permitAll()
                     .anyRequest()
                     .authenticated();

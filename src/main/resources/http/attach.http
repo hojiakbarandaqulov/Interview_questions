@@ -3,9 +3,10 @@ POST http://localhost:8080/api/v1/attach/upload
 Content-Type: multipart/form-data; boundary=WebAppBoundary
 
 --WebAppBoundary
-Content-Disposition: form-data; name="file"; filename="file1.png"
+Content-Disposition: form-data; name="OpenCV"; filename="OpenCV.png"
 
-< D:\video\file1.png
+< D:\hujjatlar\OpenCV.png
+
 
 ### attach load
 GET http://localhost:8080/api/v1/attach/open_general/2d0e39e7-5c67-4ed2-80e0-9b2bad8a7518.png
