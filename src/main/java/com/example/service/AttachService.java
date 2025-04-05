@@ -157,8 +157,8 @@ public class AttachService {
         });
     }
 
-    public AttachEntity getOrginalName(String orginalName) {
-        return attachRepository.findByOrginalName(orginalName).orElseThrow(() -> new AppBadException("Attach not found"));
+    public AttachEntity getOriginalName(String originalName) {
+        return attachRepository.findByOriginalName(originalName).orElseThrow(() -> new AppBadException("Attach not found"));
     }
     public Resource download(String attachId) {
         try {

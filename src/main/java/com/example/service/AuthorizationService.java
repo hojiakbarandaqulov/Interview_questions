@@ -19,6 +19,7 @@ import com.example.utils.MD5Util;
 import com.example.utils.RandomUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.stereotype.Service;
 
@@ -27,9 +28,13 @@ import java.util.Locale;
 import java.util.Optional;
 
 @Slf4j
-@AllArgsConstructor
 @Service
 public class AuthorizationService {
+    @Value("${spring.mail.username}")
+    private String fromAccount;
+
+    @Value("${server.domain}")
+    private String serverDomain;
 
     private final SmsHistoryService smsHistoryService;
     private final SmsService smsService;
@@ -37,6 +42,15 @@ public class AuthorizationService {
     private final ProfileRepository profileRepository;
     private final EmailHistoryService emailHistoryService;
     private final ResourceBundleMessageSource resourceBundleMessageSource;
+
+    public AuthorizationService(SmsHistoryService smsHistoryService, SmsService smsService, MailSenderService mailSenderService, ProfileRepository profileRepository, EmailHistoryService emailHistoryService, ResourceBundleMessageSource resourceBundleMessageSource) {
+        this.smsHistoryService = smsHistoryService;
+        this.smsService = smsService;
+        this.mailSenderService = mailSenderService;
+        this.profileRepository = profileRepository;
+        this.emailHistoryService = emailHistoryService;
+        this.resourceBundleMessageSource = resourceBundleMessageSource;
+    }
 
     public ApiResponse<String> registration(RegistrationDTO registrationDTO, AppLanguage language) {
 //        Optional<ProfileEntity> optional = profileRepository.findByPhoneAndVisibleTrue(registrationDTO.getEmail());
@@ -136,7 +150,9 @@ public class AuthorizationService {
         AuthorizationResponseDTO responseDTO = new AuthorizationResponseDTO();
         responseDTO.setId(entity.getId());
         responseDTO.setRole(entity.getRole());
+
         responseDTO.setJwt(JwtUtil.encode(responseDTO.getId(), entity.getPhone(), responseDTO.getRole()));
+
         return ApiResponse.ok(List.of(responseDTO),countColumn());
     }
 
@@ -197,7 +213,7 @@ public class AuthorizationService {
     public void sendRegistrationRandomCodeEmail(String profileId, String email) {
         // send email
 //        String url = "http://5.182.26.40:9090/api/v1/authorization/verification/" + profileId;
-        String url = "http://localhost:8080/api/v1/authorization/verification/" + profileId;
+        String url = "%s/api/v1/authorization/verification/" + profileId;
         String text = String.format(RandomUtil.getRandomSmsCode(), url);
         mailSenderService.send(email, "Complete registration", text);
         emailHistoryService.create(email, text); // create history

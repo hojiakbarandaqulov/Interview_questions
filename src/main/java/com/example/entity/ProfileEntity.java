@@ -1,5 +1,6 @@
 package com.example.entity;
 
+import com.example.dto.category.CategoryDTO;
 import com.example.enums.ProfileRole;
 import com.example.enums.ProfileStatus;
 import jakarta.persistence.*;
@@ -50,15 +51,14 @@ public class ProfileEntity {
     @JoinColumn(name = "photo_id", insertable = false, updatable = false)
     private AttachEntity photo;
 
-/*
     @Column(name = "category_id")
     private Integer categoryId;
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", insertable = false, updatable = false)
     private CategoryEntity category;
-*/
 
     @Column(name = "visible")
     private Boolean visible=Boolean.TRUE;
+
 
 }
