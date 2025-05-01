@@ -31,3 +31,4 @@ build/
 
 ### VS Code ###
 .vscode/
+/logs/current-log-file.log.txt
