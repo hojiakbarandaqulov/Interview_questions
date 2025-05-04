@@ -27,3 +27,7 @@
 04 May 2025 - 16:14:29.357 [main] INFO  o.f.core.internal.command.DbValidate - Successfully validated 3 migrations (execution time 00:00.087s)
 04 May 2025 - 16:14:29.384 [main] INFO  o.f.core.internal.command.DbMigrate - Current version of schema "public": 2
 04 May 2025 - 16:14:29.388 [main] INFO  o.f.core.internal.command.DbMigrate - Schema "public" is up to date. No migration necessary.
+04 May 2025 - 16:19:18.969 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+04 May 2025 - 16:19:18.975 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+04 May 2025 - 16:19:18.978 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+04 May 2025 - 16:19:20.434 [http-nio-8080-exec-9] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 1010 ms
