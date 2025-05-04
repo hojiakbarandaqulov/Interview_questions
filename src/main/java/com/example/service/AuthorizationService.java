@@ -20,6 +20,7 @@ import com.example.utils.RandomUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.MessageSourceResolvable;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.stereotype.Service;
 
@@ -72,7 +73,7 @@ public class AuthorizationService {
         sendRegistrationEmail(profileEntity.getId(), profileEntity.getEmail());
        /* smsService.sendSms(registrationDTO.getEmail());
         sendRegistrationPhone(profileEntity.getId(), registrationDTO.getEmail());*/
-        return ApiResponse.ok(List.of("registration.completed"),language,countColumn());
+        return ApiResponse.ok(resourceBundleMessageSource.getMessage("registration.completed",null,new Locale(language.name())),countColumn());
     }
 
     public void sendRegistrationPhone(String profileId, String phone) {
@@ -125,7 +126,7 @@ public class AuthorizationService {
         }
         profileRepository.updateStatus(userId, ProfileStatus.ACTIVE);
         String message = resourceBundleMessageSource.getMessage("success", null, new Locale(language.name()));
-        return ApiResponse.ok(List.of(message),countColumn());
+        return ApiResponse.ok(message,countColumn());
     }
 
     public ApiResponse<AuthorizationResponseDTO> login(LoginDTO dto, AppLanguage language) {
@@ -153,7 +154,7 @@ public class AuthorizationService {
 
         responseDTO.setJwt(JwtUtil.encode(responseDTO.getId(), entity.getPhone(), responseDTO.getRole()));
 
-        return ApiResponse.ok(List.of(responseDTO),countColumn());
+        return ApiResponse.ok(responseDTO,countColumn());
     }
 
     public ApiResponse<?> registrationResendEmail(String email, AppLanguage language) {

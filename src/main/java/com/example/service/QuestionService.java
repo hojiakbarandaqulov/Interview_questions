@@ -94,14 +94,14 @@ public class QuestionService {
             dtoList.add(questionMapper.toPaginationDTO(questionEntity));
         }
         long count = pageEntity.getTotalElements();
-        return ApiResponse.ok(List.of(new PageImpl<>(dtoList, pageable, count)),countColumn());
+        return ApiResponse.ok(new PageImpl<>(dtoList, pageable, count),countColumn());
     }
 
     public ApiResponse<Boolean> deleteQuestion(Long id) {
         QuestionCreateEntity entity = getQuestionById(id);
         entity.setVisible(false);
         questionRepository.save(entity);
-        return ApiResponse.ok(List.of(true),countColumn());
+        return ApiResponse.ok(true,countColumn());
     }
 
     public ApiResponse<Boolean> changeStatus(Long id) {
@@ -112,6 +112,6 @@ public class QuestionService {
             questionById.setQuestionStatus(QuestionStatus.PRIVATE);
         }
         questionRepository.save(questionById);
-        return ApiResponse.ok(List.of(true),countColumn());
+        return ApiResponse.ok(true,countColumn());
     }
 }

@@ -50,7 +50,7 @@ public class ProfileService {
         }
         profileEntity.setPhotoId(profile.getPhotoId());
         profileRepository.save(profileEntity);
-        return ApiResponse.ok(List.of("success"),countColumn());
+        return ApiResponse.ok("success",countColumn());
     }
 
     public ApiResponse<?> updatePassword(ProfileUpdatePasswordDTO profile, String id, AppLanguage language) {
