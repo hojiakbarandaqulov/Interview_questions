@@ -32,3 +32,4 @@ build/
 ### VS Code ###
 .vscode/
 /logs/current-log-file.log.txt
+/src/main/resources/application-local.properties
